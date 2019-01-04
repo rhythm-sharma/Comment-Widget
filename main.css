@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
+
 
 body{
 }
@@ -13,31 +15,68 @@ h3{
     margin: 5px;
 }
 
-.box{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 10%;
-    height: 250px;
-}
-
-.photo{
-    max-height: 50px;
-    max-width: 50px;
-    min-height: 50px;
-    min-width: 50px;
-}
-
-.guest-message{
-    margin: 10px;
+.comment-box{
+    margin: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    font-family: 'PT Sans Narrow', sans-serif;
 }
 
-.input-message{
-    width: 75%;
+.img{
+    min-height:50px;
+    max-height:50px;
+    min-width:50px;
+    max-width:50px;
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+}
+
+.row1{
+    margin: 0 0 0 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+.name{
+    margin: 5px 5px 5px 0px;
+}
+
+.name:hover{
+    color:rgba(87, 78, 78, 0.87);
+}
+
+.time_ago{
+    color: rgba(0,0,0,.4);
+    margin: 5px;
+}
+
+.row2{
+    margin: 0 0 0 1em;
     height: auto;
-    
+    max-width: 750px;
+    width: auto;
+}
+
+.row3{
+    margin: 0 0 0 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+.reply{
+    color: rgba(0,0,0,.4);
+    margin: 0 0 0 0em;
+}
+
+.vote{
+    margin: 0 0 0 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+.like, .dislike{
+    margin: 0 0 0 1em;
 }
