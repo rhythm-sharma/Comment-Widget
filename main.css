@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+body{
+}
+
+.top-heading{
+    display: flex;
+    flex-direction: row;
+}
+
+h3{
+    font-family: 'Roboto Mono', monospace;
+    margin: 5px;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10%;
+    height: 250px;
+}
+
+.photo{
+    max-height: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+}
+
+.guest-message{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.input-message{
+    width: 75%;
+    height: auto;
+    
+}
