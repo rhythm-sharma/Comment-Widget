@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
-
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
 
 .top-heading{
     display: flex;
@@ -53,7 +53,7 @@ h3{
 .row2{
     margin: 0 0 0 1em;
     height: auto;
-    max-width: 750px;
+    max-width: 30rem;
     width: auto;
 }
 
@@ -63,9 +63,13 @@ h3{
     flex-direction: row;
 }
 
-.reply{
+.reply > a{
     color: rgba(0,0,0,.4);
     margin: 0 0 0 0em;
+}
+
+.reply > a:hover{
+    color: black;
 }
 
 .vote{
@@ -76,4 +80,195 @@ h3{
 
 .like, .dislike{
     margin: 0 0 0 1em;
+    color: rgba(17, 12, 12, 0.4);
+}
+
+.like:hover{
+    color: black;
+}
+
+.dislike:hover{
+    color: black;
+}
+
+.new-message{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.message-box{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field{
+    margin: 0 0 0 2em;
+    text-decoration: none;
+    border-style: solid 1px black; 
+    width: 550px;
+    height: 10rem;
+    resize: vertical;
+}
+
+
+ @media screen and (max-width: 600px) {
+.input-field{
+    width: auto;
+} 
+}
+
+.submit-button{
+    margin: 1em 1em 1em 2em;
+}
+
+
+.button 
+{
+	border-radius: 6px;
+	background-color: #2185d0;
+    border: none;
+    color: white;
+    padding: 3px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	font-size: 14px;
+}
+  
+.button span 
+{
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.1s;
+}
+  
+.button span:after 
+{
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+  
+.button:hover span 
+{
+	padding-right: 25px;
+}
+  
+.button:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+
+/* pop -up for login */
+  
+.button{
+    font-size: .75em;
+    padding: 2px;
+    color: #fff;
+    border: 1px solid #06D85F;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.button:hover {
+    background: #06D85F;
+}
+  
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+  
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+  
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: #06D85F;
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+    
+@media screen and (max-width: 700px){
+    .popup{
+      width: 70%;
+    }
+}
+
+.login{
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    display: flex;
+    flex-direction: column;
+}
+
+.username{
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    font-size: 1em;
+}
+
+.password{
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    font-size: 1em;
+}
+
+.login-input{
+    background-color: rgb(92, 201, 235);
+    text-decoration: none;
+    border-style: hidden;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    margin:  5px;
+}
+
+.login-btn{
+    display: flex;
+    flex-direction: column;
 }

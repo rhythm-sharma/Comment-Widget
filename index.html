@@ -6,7 +6,6 @@
     <title>Comment-Widget</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
-    <link rel="stylesheet" href="src/css/fontello.css">
     <script src="main.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -20,100 +19,59 @@
         </div>
         <div class="information">
             <div class="row1">
-                <div class="name"><strong>Rhythm</strong></div>
-                <div class="time_ago">5 min ago</div>
+                <div class="name"><strong id="fetch-name">Rhythm</strong></div>
+                <div class="time_ago" id="fetch-time">5 min ago</div>
             </div>
-            <div class="row2">
+            <div class="row2" id="fetch-message">
                 <!-- <textarea id="comments" class="input-field" style="height:100%;width :200%;" name="comment" placeholder="Enter your comment here..."></textarea> -->
                 This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv
             </div>
             <div class="row3">
-                <div class="reply"><a>reply</a></div>
+                <div class="reply"><a style="text-decoration: none;" href="">Reply</a></div>
                 <div class="vote">
                     <i class="fa fa-thumbs-up like"></i>
-                    <div id="like-count"></div>
+                    <div id="fetch-like"></div>
                     <i class="fa fa-thumbs-down dislike"></i>
-                    <div id="dislike-count" ></div>
+                    <div id="fetch-dislike" ></div>
                 </div>
+                <div class=""></div>
             </div>
         </div>
     </div>
-    <div class="comment-box">
-            <div class="photo">
-                <img class="img" src="https://robohash.org/0" alt="photo">
-            </div>
-            <div class="information">
-                <div class="row1">
-                    <div class="name"><strong>Rhythm</strong></div>
-                    <div class="time_ago">5 min ago</div>
-                </div>
-                <div class="row2">
-                    <!-- <textarea id="comments" class="input-field" style="height:100%;width :200%;" name="comment" placeholder="Enter your comment here..."></textarea> -->
-                    This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv
-                </div>
-                <div class="row3">
-                    <div class="reply"><a>reply</a></div>
-                    <div class="vote">
-                        <i class="fa fa-thumbs-up like"></i>
-                        <div id="like-count"></div>
-                        <i class="fa fa-thumbs-down dislike"></i>
-                        <div id="dislike-count" ></div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="comment-box" style=" margin: 0 0 0 5em;">
-                <div class="photo">
-                    <img class="img" src="https://robohash.org/1" alt="photo">
-                </div>
-                <div class="information">
-                    <div class="row1">
-                        <div class="name"><strong>Rhythm</strong></div>
-                        <div class="time_ago">5 min ago</div>
-                    </div>
-                    <div class="row2">
-                        <!-- <textarea id="comments" class="input-field" style="height:100%;width :200%;" name="comment" placeholder="Enter your comment here..."></textarea> -->
-                        This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv
-                    </div>
-                    <div class="row3">
-                        <div class="reply"><a>reply</a></div>
-                        <div class="vote">
-                            <i class="fa fa-thumbs-up like"></i>
-                            <div id="like-count"></div>
-                            <i class="fa fa-thumbs-down dislike"></i>
-                            <div id="dislike-count" ></div>
-                        </div>
-                    </div>
-                </div>
+    <div class="new-message">
+        <div class="message-box">
+            <a href="#popup1"><textarea id="comments" class="input-field" name="comment" placeholder="Enter your comment here..."></textarea></a>
         </div>
+        <div class="submit-button">
+            <a class="button" href="#popup1">Add a Reply</a>
+        </div>
+    </div>
+        
+    <div id="popup1" class="overlay">
+        <div style="background-color:rgb(92, 201, 235);" class="popup">
+            <h2 style="text-align: center;">Sign Up</h2>
+            <a class="close" href="#">&times;</a>
+            <form action="">
+                <div class="login">
+                <div class="username">
+                    <label for="username" style="padding: 5px;margin: 5px ;">Username :</label>
+                    <input minlength="4" maxlength="30" style="padding: 5px;margin: 5px;" class="login-input" type="text"  required>
+                </div>
+                <div class="password">
+                    <label style="padding: 5px;margin: 5px ;" for="password">Password :</label>
+                    <input minlength="5" maxlength="16" style="padding: 5px;margin: 5px;" class="login-input" type="password" required>    
+                </div>
+                <div class="login-btn" style="margin: 15px 5px 5px 5px;text-align:center">
+                    <button type="" style="padding:5px;font-size: 1em;margin: 15px 5px 5px 5px" class="button">Sign Up</button>
+                    <button type="" style="padding:5px;font-size: 1em;margin: 15px 5px 5px 5px" class="button">Login</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-        <div class="comment-box">
-                    <div class="photo">
-                        <img class="img" src="https://robohash.org/2" alt="photo">
-                    </div>
-                    <div class="information">
-                        <div class="row1">
-                            <div class="name"><strong>Rhythm</strong></div>
-                            <div class="time_ago">5 min ago</div>
-                        </div>
-                        <div class="row2">
-                            <!-- <textarea id="comments" class="input-field" style="height:100%;width :200%;" name="comment" placeholder="Enter your comment here..."></textarea> -->
-                            This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv
-                        </div>
-                        <div class="row3">
-                            <div class="reply"><a>reply</a></div>
-                            <div class="vote">
-                                <i class="fa fa-thumbs-up like"></i>
-                                <div id="like-count"></div>
-                                <i class="fa fa-thumbs-down dislike"></i>
-                                <div id="dislike-count" ></div>
-                            </div>
-                        </div>
-                    </div>
-        </div>
+
 </body>
 
-<script>
-</script>
 </html>
