@@ -2,6 +2,21 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 @import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
 
+
+.header{
+    display: flex;
+    flex-direction: row;
+}
+
+.login-div{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-right:5px; 
+    display: flex;
+    flex-direction: row;
+}
+
 .top-heading{
     display: flex;
     flex-direction: row;
@@ -103,7 +118,7 @@ h3{
 }
 
 .input-field{
-    margin: 0 0 0 2em;
+    margin: 0 0 0 1em;
     text-decoration: none;
     border-style: solid 1px black; 
     width: 550px;
@@ -114,16 +129,16 @@ h3{
 
  @media screen and (max-width: 600px) {
 .input-field{
-    width: auto;
+    width: 90vw;
 } 
 }
 
-.submit-button{
+.submit-btn{
     margin: 1em 1em 1em 2em;
 }
 
 
-.button 
+.btn 
 {
 	border-radius: 6px;
 	background-color: #2185d0;
@@ -136,7 +151,7 @@ h3{
 	font-size: 14px;
 }
   
-.button span 
+.btn span 
 {
 	cursor: pointer;
 	display: inline-block;
@@ -144,7 +159,7 @@ h3{
 	transition: 0.1s;
 }
   
-.button span:after 
+.btn span:after 
 {
 	content: '\00bb';
 	position: absolute;
@@ -154,121 +169,96 @@ h3{
 	transition: 0.5s;
 }
   
-.button:hover span 
+.btn:hover span 
 {
 	padding-right: 25px;
 }
   
-.button:hover span:after {
+.btn:hover span:after {
 	opacity: 1;
 	right: 0;
 }
 
 
 /* pop -up for login */
-  
-.button{
-    font-size: .75em;
-    padding: 2px;
-    color: #fff;
-    border: 1px solid #06D85F;
-    border-radius: 20px/50px;
-    text-decoration: none;
+input[type=text], input[type=password] {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 26px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+	font-size:16px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 26px;
+    border: none;
     cursor: pointer;
-    transition: all 0.3s ease-out;
+    width: 90%;
+	font-size:20px;
+}
+button:hover {
+    opacity: 0.8;
 }
 
-.button:hover {
-    background: #06D85F;
-}
-  
-.overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    transition: opacity 500ms;
-    visibility: hidden;
-    opacity: 0;
-}
-
-.overlay:target {
-    visibility: visible;
-    opacity: 1;
-}
-  
-.popup {
-    margin: 70px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    width: 30%;
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
     position: relative;
-    transition: all 5s ease-in-out;
 }
-  
-.popup h2 {
-    margin-top: 0;
-    color: #333;
-    font-family: Tahoma, Arial, sans-serif;
-  }
-  .popup .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
+.avatar {
+    width: 200px;
+	height:200px;
+    border-radius: 50%;
 }
 
-.popup .close:hover {
-    color: #06D85F;
-  }
-  .popup .content {
-    max-height: 30%;
+/* The Modal (background) */
+.modal {
+	display:none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     overflow: auto;
-}
-    
-@media screen and (max-width: 700px){
-    .popup{
-      width: 70%;
-    }
+    background-color: rgba(0,0,0,0.4);
 }
 
-.login{
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
-    display: flex;
-    flex-direction: column;
+/* Modal Content Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 4% auto 15% auto;
+    border: 1px solid #888;
+    width: 40%; 
+	padding-bottom: 30px;
 }
 
-.username{
-    display: flex;
-    flex-direction: row;
-    vertical-align: middle;
-    font-size: 1em;
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+.close:hover,.close:focus {
+    color: red;
+    cursor: pointer;
 }
 
-.password{
-    display: flex;
-    flex-direction: row;
-    vertical-align: middle;
-    font-size: 1em;
+/* Add Zoom Animation */
+.animate {
+    animation: zoom 0.6s
 }
-
-.login-input{
-    background-color: rgb(92, 201, 235);
-    text-decoration: none;
-    border-style: hidden;
-    border-bottom: 1px solid black;
-    padding: 5px;
-    margin:  5px;
-}
-
-.login-btn{
-    display: flex;
-    flex-direction: column;
+@keyframes zoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
 }

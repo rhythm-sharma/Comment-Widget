@@ -6,13 +6,21 @@
     <title>Comment-Widget</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
-    <script src="main.js"></script>
+    <script src="jquery.js"></script>
+    <!-- <script src="main.js" ></script>  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <header class="header">
     <div style="margin: 0 0 0 1em" class="top-heading"><h3>Comments</h3><img style="vertical-align:bottom;min-height:28px;max-height:28px;min-width:28px;max-width:28px;" src="src/img/chat.svg" alt="comment-img"></div>
+    <div style=" width:auto;background-color: rgba(192, 171, 171, 0.2);box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="login-div">
+        <img style="background-color:white;border-radius:50%;" class="img" src="https://robohash.org/0" alt="photo">
+        <p style="margin-left:15px; margin-right:5px;" id="fetch-username">guest</p>
+    </div>
+    </header>
     <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin:1em 0 0 1em;padding: 0px;">
-    
+
+
     <div class="comment-box">
         <div class="photo">
             <img class="img" src="https://robohash.org/0" alt="photo">
@@ -34,43 +42,173 @@
                     <i class="fa fa-thumbs-down dislike"></i>
                     <div id="fetch-dislike" ></div>
                 </div>
-                <div class=""></div>
             </div>
         </div>
     </div>
 
-    <div class="new-message">
+    <div id="new-message" class="new-message">
         <div class="message-box">
-            <a href="#popup1"><textarea id="comments" class="input-field" name="comment" placeholder="Enter your comment here..."></textarea></a>
+            <textarea id="comments" class="input-field" name="comment" onclick="document.getElementById('modal-wrapper').style.display='block'" placeholder="Enter your comment here..."></textarea>
         </div>
         <div class="submit-button">
-            <a class="button" href="#popup1">Add a Reply</a>
-        </div>
-    </div>
-        
-    <div id="popup1" class="overlay">
-        <div style="background-color:rgb(92, 201, 235);" class="popup">
-            <h2 style="text-align: center;">Sign Up</h2>
-            <a class="close" href="#">&times;</a>
-            <form action="">
-                <div class="login">
-                <div class="username">
-                    <label for="username" style="padding: 5px;margin: 5px ;">Username :</label>
-                    <input minlength="4" maxlength="30" style="padding: 5px;margin: 5px;" class="login-input" type="text"  required>
-                </div>
-                <div class="password">
-                    <label style="padding: 5px;margin: 5px ;" for="password">Password :</label>
-                    <input minlength="5" maxlength="16" style="padding: 5px;margin: 5px;" class="login-input" type="password" required>    
-                </div>
-                <div class="login-btn" style="margin: 15px 5px 5px 5px;text-align:center">
-                    <button type="" style="padding:5px;font-size: 1em;margin: 15px 5px 5px 5px" class="button">Sign Up</button>
-                    <button type="" style="padding:5px;font-size: 1em;margin: 15px 5px 5px 5px" class="button">Login</button>
-                </div>
-                </div>
-            </form>
+            <button onclick="document.getElementById('modal-wrapper').style.display='block'" style="width: 8rem" class="btn">Add a Reply</button>
         </div>
     </div>
 
+    <div id="modal-wrapper" class="modal">
+      
+        <form onsubmit="return false;" class="modal-content animate">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
+                <img src="https://robohash.org/196.png" alt="Avatar" class="avatar">
+                <h1 style="text-align:center">Login</h1>
+            </div>
+    
+            <div class="container">
+                <input id="log-usr" autocomplete="off" type="text" placeholder="Enter Username" name="uname" required>
+                <input id="log-psw" autocomplete="off" type="password" placeholder="Enter Password" name="psw" required>        
+                <button type="submit" onclick="login();">Login</button>
+                <button onclick="document.getElementById('modal-wrapper-2').style.display='block';document.getElementById('modal-wrapper').style.display='none'" class="button">Sign Up</button>         
+            </div>
+        </form>
+    </div>
+    
+    <div id="modal-wrapper-2" class="modal">
+      
+        <form onsubmit="return false;" class="modal-content animate">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('modal-wrapper-2').style.display='none'" class="close" title="Close PopUp">&times;</span>
+                <img src="https://robohash.org/196.png" alt="Avatar" class="avatar">
+                <h1 style="text-align:center">Sign Up</h1>
+            </div>
+    
+            <div class="container">
+                <input id="sign-usr" autocomplete="off" type="text" placeholder="Enter Username" name="uname" required>
+                <input id="sign-psw" autocomplete="off" type="password" placeholder="Enter Password" name="psw" required>        
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="comment-box" class="comment-box" style="display:none;">
+            <div class="photo">
+                <img class="img" src="https://robohash.org/0" alt="photo">
+            </div>
+            <div class="information">
+                <div class="row1">
+                    <div class="name"><strong id="fetch-name-comment"></strong></div>
+                    <div class="time_ago" id="fetch-time-comment"></div>
+                </div>
+                <div id="new-message" class="new-message row2">
+                    <div id="message-box-comment" class="message-box  row2">
+                        <textarea id="text-comments" class="input-field" name="comment" placeholder="Enter your comment here..."></textarea>
+                    </div>
+                    <div class="submit-button">
+                        <button onclick="Add_reply()" style="width: 8rem" class="btn">Add a Reply</button>
+                    </div>
+                    </div>
+                <div id="row3" class="row3" style="display:none">
+                    <div class="reply"><a style="text-decoration: none;" href="">Reply</a></div>
+                    <div class="vote">
+                        <i class="fa fa-thumbs-up like"></i>
+                        <div id="fetch-like"></div>
+                        <i class="fa fa-thumbs-down dislike"></i>
+                        <div id="fetch-dislike" ></div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+<script>    
+
+let member;
+let comment_message;
+
+var signup_username = ["Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
+var signup_password = ['123','123','123','123','123','123'];
+
+var log_usr = document.getElementById("log-usr").value;
+var log_psw = document.getElementById("log-psw").value;
+
+function exists(){
+    let signup_username = ["Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
+    let signup_password = ['123','123','123','123','123','123'];
+    let log_usr = document.getElementById("log-usr").value;
+    let log_psw = document.getElementById("log-psw").value;
+    
+
+        if(signup_username.indexOf(log_usr) > -1 && signup_password.indexOf(log_psw) > -1 ){ //that was blunder!  ---> arrayname.indexOf('string to be searched in array') ---> it checks if string exists or not if yes then retuen 0 else -1  
+            alert('found');
+            member = log_usr;
+            return(true);
+        }else{
+            alert('not found');
+            return(false);
+        }
+}
+
+function login(){
+        //if login's username and password matches then login
+        if(exists() === true ){
+            //change div with login member information
+            document.getElementById('modal-wrapper').style.display='none';
+            document.getElementById("fetch-username").innerHTML = member;
+            document.getElementById('new-message').style.display='none';
+            document.getElementById("fetch-name-comment").innerHTML = member;
+            document.getElementById('comment-box').style.display='block';
+            comment();
+            
+        }else{
+            document.getElementById('modal-wrapper').style.display='none';
+            document.getElementById('modal-wrapper-2').style.display='block';
+            //member not found, redirect to signup
+            // redirect to ----> signup page
+        }
+    }
+
+function signup(){ 
+
+    sessionStorage.setItem("name", JSON.stringify(signup_username));
+    var retrievedname = sessionStorage.getItem("name");
+    var retrievedname = JSON.parse(retrievedname);
+    
+    sessionStorage.setItem("psw", JSON.stringify(signup_password));
+    var retrievedpsw = sessionStorage.getItem("psw");
+    var retrievedpsw = JSON.parse(retrievedpsw);
+
+    alert(retrievedname.length);
+}
+
+
+function comment(){
+
+}
+
+function Add_reply(){
+    save_comment();
+    comment_message = document.getElementById("text-comments").value;
+    console.log(comment_message);
+    remove_element();
+    add_element(comment_message);
+}
+
+function save_comment(){
+    
+}
+
+function add_element(comment_message){
+    let div = document.createElement('div');
+    document.getElementById('message-box-comment').appendChild(div);
+    document.getElementById("message-box-comment").innerHTML = comment_message;
+    document.getElementById("message-box-comment").classList.add("row2");
+}
+
+function remove_element(){
+    let element = document.getElementById("text-comments");
+    element.parentNode.removeChild(element);
+}
+
+</script>
 
 </body>
 
