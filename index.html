@@ -102,6 +102,8 @@
         </form>
     </div>
 
+<!----------------------------------------- Something after signup -------------------------->
+
     <div id="comment-box" class="comment-box" style="display:none;">
             <div class="photo">
                 <img class="img" src="https://robohash.org/0" alt="photo">
@@ -130,6 +132,21 @@
                 </div>
             </div>
     </div>
+
+    <!-------------------------------  message box popup open after login ----------------------------->
+    <div id="message-box-popup" class="modal">
+            <form onsubmit="return false;" class="modal-content animate">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('message-box-popup').style.display='none'" class="close" title="Close PopUp">&times;</span>
+                </div>
+        
+                <div class="container">
+                    <textarea style="width:auto;" id="message-box-comments" class="input-field" name="comment" onclick="" placeholder="Enter your comment here..."></textarea>
+                    <button onclick="Add_reply();" style="width: 8rem" class="btn">Add a Reply</button>  
+                </div>
+            </form>
+        </div>
+    
 
 <script>    
 
@@ -164,6 +181,11 @@ function login(){
         if(exists() === true ){
             //change div with login member information
             document.getElementById('modal-wrapper').style.display='none';
+            // enter message in message box //
+            document.getElementById('message-box-popup').style.display='block'
+
+
+            //
             document.getElementById("fetch-username").innerHTML = member;
             document.getElementById('new-message').style.display='none';
             document.getElementById("fetch-name-comment").innerHTML = member;
@@ -197,16 +219,14 @@ function comment(){
 }
 
 function Add_reply(){
-    save_comment();
-    comment_message = document.getElementById("text-comments").value;
+    comment_message = document.getElementById("message-box-comments").value;
+    document.getElementById('message-box-popup').style.display='none';
     console.log(comment_message);
     remove_element();
     add_element(comment_message);
 }
 
-function save_comment(){
-    
-}
+
 
 function add_element(comment_message){
     let div = document.createElement('div');
