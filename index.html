@@ -137,6 +137,10 @@
 let member;
 let comment_message;
 let  Add_reply_count = 0;
+let  retrievedData;
+let message_array2 = [];
+let message_array = [];
+
 
 var signup_username = ["Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
 var signup_password = ['123','123','123','123','123','123'];
@@ -225,32 +229,26 @@ function add_element(comment_message){
         let comment_box_id = document.getElementsByClassName("comment-box")[Add_reply_count].id;   ///it contain's id name
 
   /////*********************** changing comment-box-id *******************////////
-        let message_array = [];
-       
-       
+
+
         relative = document.getElementById('comment-boxes');
         d = document.getElementById(comment_box_id);
-        let message = d.outerHTML
-
-        message_array[Add_reply_count] = message;
-        sessionStorage.setItem("comment-box-div", JSON.stringify(message_array));
-        var retrievedData = localStorage.getItem("comment-box-div");
-        var message_array2 = JSON.parse(retrievedData);
-
-       
+        var message = d.outerHTML;
+        
+        message_array[Add_reply_count] = message;       
+        localStorage.setItem("comment-box-div", JSON.stringify(message_array));
+        retrievedData = localStorage.getItem("comment-box-div");
+        message_array2 = JSON.parse(retrievedData);
+        
         var wrapper = document.createElement('div');
         wrapper.innerHTML =  message_array2[Add_reply_count];
         relative.appendChild(wrapper);
 
-
-        
+       
         Add_reply_count = Add_reply_count + 1;
         
 }
 
-myFunction(){
-
-}
 
 
 </script>
