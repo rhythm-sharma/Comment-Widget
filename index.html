@@ -10,7 +10,7 @@
     <!-- <script src="main.js" ></script>  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body  onload="myFunction()">
 
 <!----------------------------------------- Heading --------------------------------->
 
@@ -18,36 +18,38 @@
     <div style="margin: 0 0 0 1em" class="top-heading"><h3>Comments</h3><img style="vertical-align:bottom;min-height:28px;max-height:28px;min-width:28px;max-width:28px;" src="src/img/chat.svg" alt="comment-img"></div>
     <div style=" width:auto;background-color: rgba(192, 171, 171, 0.2);box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="login-div">
         <img style="background-color:white;border-radius:50%;" class="img" src="https://robohash.org/0" alt="photo">
-        <p style="margin-left:15px; margin-right:5px;" id="fetch-username">guest</p>
+        <p style="margin-left:15px; margin-right:5px;" id="fetch-username-after-login">guest</p>
     </div>
     </header>
     <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin:1em 0 0 1em;padding: 0px;">
 
 <!----------------------------------------- Sample - comment    --------------------------------->
     <div id="comment-boxes">    
-        <div id="comment-box-id" class="comment-box">
-        <div class="photo">
-            <img class="img" src="https://robohash.org/0" alt="photo">
-        </div>
-        <div class="information">
-            <div class="row1">
-                <div class="name"><strong id="fetch-name">Rhythm</strong></div>
-                <div class="time_ago" id="fetch-time">5 min ago</div>
+        <div>
+            <div id="comment-box-id" class="comment-box">
+                <div class="photo">
+                <img class="img" src="https://robohash.org/0" alt="photo">
             </div>
-            <div class="row2" id="fetch-message">
-                <!-- <textarea id="comments" class="input-field" style="height:100%;width :200%;" name="comment" placeholder="Enter your comment here..."></textarea> -->
-                This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv
-            </div>
-            <div class="row3">
-                <div class="reply"><a style="text-decoration: none;" href="">Reply</a></div>
-                <div class="vote">
-                    <i class="fa fa-thumbs-up like"></i>
-                    <div id="fetch-like"></div>
-                    <i class="fa fa-thumbs-down dislike"></i>
-                    <div id="fetch-dislike" ></div>
+            <div class="information">
+                <div class="row1">
+                    <div class="name"><strong class="fetch-name-class" id="fetch-name">Rhythm</strong></div>
+                    <div class="time_ago" id="fetch-time">5 min ago</div>
+                </div>
+                <div class="row2" id="fetch-message">
+                    <!-- <textarea id="comments" class="input-field" style="height:100%;width :200%;" name="comment" placeholder="Enter your comment here..."></textarea> -->
+                    This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                </div>
+                <div class="row3">
+                    <div class="reply"><a style="text-decoration: none;" href="">Reply</a></div>
+                    <div class="vote">
+                        <i class="fa fa-thumbs-up like"></i>
+                        <div id="fetch-like"></div>
+                        <i class="fa fa-thumbs-down dislike"></i>
+                        <div id="fetch-dislike" ></div>
+                    </div>
                 </div>
             </div>
-        </div>
+            </div>
         </div>
     </div>
 
@@ -134,6 +136,7 @@
 
 let member;
 let comment_message;
+let  Add_reply_count = 0;
 
 var signup_username = ["Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
 var signup_password = ['123','123','123','123','123','123'];
@@ -163,6 +166,8 @@ function login(){
         if(exists() === true ){
             //change div with login member information
             document.getElementById('modal-wrapper').style.display='none';
+            document.getElementById('fetch-username-after-login').innerHTML = member;
+
             // enter message in message box //
             document.getElementById('message-box-popup').style.display='block'
             
@@ -193,7 +198,6 @@ function Add_reply(){
     document.getElementById('message-box-popup').style.display='none';
     console.log(comment_message);
     add_element(comment_message);
-
 }
 
 
@@ -202,6 +206,49 @@ function add_element(comment_message){
     let comment_boxes = document.getElementById("comment-boxes");
     let clone = comment_boxes.firstElementChild.cloneNode(true);
     comment_boxes.appendChild(clone);
+   
+    console.log(member);
+    /////********************************** changing comment-username-after-login  ****************************////////
+    document.getElementsByClassName("fetch-name-class")[Add_reply_count].id = 'fetch-name' + String(Add_reply_count);
+    let fetch_name_id = document.getElementsByClassName("fetch-name-class")[Add_reply_count].id;
+    document.getElementById(fetch_name_id).innerHTML = member;
+
+    /////********************************** changing comment-message-after-login  ****************************////////
+    document.getElementsByClassName("row2")[Add_reply_count].id = 'fetch-message' + String(Add_reply_count);
+    let fetch_message_id = document.getElementsByClassName("row2")[Add_reply_count].id;
+    document.getElementById(fetch_message_id).innerHTML = comment_message;
+
+    /////********************************** saving the shit at one place  ****************************////////
+
+        /////*********************** changing comment-box-id *******************////////
+        document.getElementsByClassName("comment-box")[Add_reply_count].id = 'comment-box-id' + String(Add_reply_count);
+        let comment_box_id = document.getElementsByClassName("comment-box")[Add_reply_count].id;   ///it contain's id name
+
+  /////*********************** changing comment-box-id *******************////////
+        let message_array = [];
+       
+       
+        relative = document.getElementById('comment-boxes');
+        d = document.getElementById(comment_box_id);
+        let message = d.outerHTML
+
+        message_array[Add_reply_count] = message;
+        sessionStorage.setItem("comment-box-div", JSON.stringify(message_array));
+        var retrievedData = localStorage.getItem("comment-box-div");
+        var message_array2 = JSON.parse(retrievedData);
+
+       
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML =  message_array2[Add_reply_count];
+        relative.appendChild(wrapper);
+
+
+        
+        Add_reply_count = Add_reply_count + 1;
+        
+}
+
+myFunction(){
 
 }
 
