@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
+<!----------------------------------------- Heading --------------------------------->
+
     <header class="header">
     <div style="margin: 0 0 0 1em" class="top-heading"><h3>Comments</h3><img style="vertical-align:bottom;min-height:28px;max-height:28px;min-width:28px;max-width:28px;" src="src/img/chat.svg" alt="comment-img"></div>
     <div style=" width:auto;background-color: rgba(192, 171, 171, 0.2);box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="login-div">
@@ -20,7 +23,7 @@
     </header>
     <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin:1em 0 0 1em;padding: 0px;">
 
-
+<!----------------------------------------- Sample - comment    --------------------------------->
     <div class="comment-box">
         <div class="photo">
             <img class="img" src="https://robohash.org/0" alt="photo">
@@ -46,6 +49,9 @@
         </div>
     </div>
 
+<!----------------------------------------- Comment-box for guest --------------------------------->
+
+
     <div id="new-message" class="new-message">
         <div class="message-box">
             <textarea id="comments" class="input-field" name="comment" onclick="document.getElementById('modal-wrapper').style.display='block'" placeholder="Enter your comment here..."></textarea>
@@ -55,7 +61,9 @@
         </div>
     </div>
 
-    <div id="modal-wrapper" class="modal">
+<!-----------------------------------------  Login-form  --------------------------------->
+
+<div id="modal-wrapper" class="modal">
       
         <form onsubmit="return false;" class="modal-content animate">
             <div class="imgcontainer">
@@ -72,6 +80,10 @@
             </div>
         </form>
     </div>
+
+
+<!-----------------------------------------  signup-form  --------------------------------->
+
     
     <div id="modal-wrapper-2" class="modal">
       
@@ -79,7 +91,7 @@
             <div class="imgcontainer">
                 <span onclick="document.getElementById('modal-wrapper-2').style.display='none'" class="close" title="Close PopUp">&times;</span>
                 <img src="https://robohash.org/196.png" alt="Avatar" class="avatar">
-                <h1 style="text-align:center">Sign Up</h1>
+                <h1 style="text-align:center">Sign Up here</h1>
             </div>
     
             <div class="container">
