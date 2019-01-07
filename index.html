@@ -24,7 +24,8 @@
     <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin:1em 0 0 1em;padding: 0px;">
 
 <!----------------------------------------- Sample - comment    --------------------------------->
-    <div class="comment-box">
+    <div id="comment-boxes">    
+        <div id="comment-box-id" class="comment-box">
         <div class="photo">
             <img class="img" src="https://robohash.org/0" alt="photo">
         </div>
@@ -46,6 +47,7 @@
                     <div id="fetch-dislike" ></div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
@@ -106,6 +108,7 @@
 
 
     <!-------------------------------  message box popup open after login ----------------------------->
+
     <div id="message-box-popup" class="modal">
             <form onsubmit="return false;" class="modal-content animate">
                 <div class="imgcontainer" style="margin-top:0px;">
@@ -113,11 +116,18 @@
                 </div>
                 <h3>Enter your comment here</h3>
                 <div class="container" style="margin-top:20px;">
-                    <textarea style="width:90%" id="message-box-comments" class="input-field" name="comment" onclick="" placeholder="Enter your comment here..."></textarea>
+                    <textarea autocomplete="off" style="width:90%" id="message-box-comments" class="input-field" name="comment" onclick="" placeholder="Enter your comment here..."></textarea>
                     <button onclick="Add_reply();" style="width: 8rem" class="btn">Add a Reply</button>  
                 </div>
             </form>
         </div>
+
+    <!-------------------------------  after add reply btn press ----------------------------->
+
+    <div>
+
+    </div>
+
     
 
 <script>    
@@ -155,13 +165,6 @@ function login(){
             document.getElementById('modal-wrapper').style.display='none';
             // enter message in message box //
             document.getElementById('message-box-popup').style.display='block'
-
-
-            //
-            document.getElementById("fetch-username").innerHTML = member;
-            document.getElementById('new-message').style.display='none';
-            document.getElementById('comment-box').style.display='block';
-            comment();
             
         }else{
             document.getElementById('modal-wrapper').style.display='none';
@@ -185,31 +188,23 @@ function signup(){
 }
 
 
-function comment(){
-
-}
-
 function Add_reply(){
     comment_message = document.getElementById("message-box-comments").value;
     document.getElementById('message-box-popup').style.display='none';
     console.log(comment_message);
-    remove_element();
     add_element(comment_message);
+
 }
 
 
 
 function add_element(comment_message){
-    let div = document.createElement('div');
-    document.getElementById('message-box-comment').appendChild(div);
-    document.getElementById("message-box-comment").innerHTML = comment_message;
-    document.getElementById("message-box-comment").classList.add("row2");
+    let comment_boxes = document.getElementById("comment-boxes");
+    let clone = comment_boxes.firstElementChild.cloneNode(true);
+    comment_boxes.appendChild(clone);
+
 }
 
-function remove_element(){
-    let element = document.getElementById("text-comments");
-    element.parentNode.removeChild(element);
-}
 
 </script>
 
