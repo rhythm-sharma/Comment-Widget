@@ -104,44 +104,16 @@
 
 <!----------------------------------------- Something after signup -------------------------->
 
-    <div id="comment-box" class="comment-box" style="display:none;">
-            <div class="photo">
-                <img class="img" src="https://robohash.org/0" alt="photo">
-            </div>
-            <div class="information">
-                <div class="row1">
-                    <div class="name"><strong id="fetch-name-comment"></strong></div>
-                    <div class="time_ago" id="fetch-time-comment"></div>
-                </div>
-                <div id="new-message" class="new-message row2">
-                    <div id="message-box-comment" class="message-box  row2">
-                        <textarea id="text-comments" class="input-field" name="comment" placeholder="Enter your comment here..."></textarea>
-                    </div>
-                    <div class="submit-button">
-                        <button onclick="Add_reply()" style="width: 8rem" class="btn">Add a Reply</button>
-                    </div>
-                    </div>
-                <div id="row3" class="row3" style="display:none">
-                    <div class="reply"><a style="text-decoration: none;" href="">Reply</a></div>
-                    <div class="vote">
-                        <i class="fa fa-thumbs-up like"></i>
-                        <div id="fetch-like"></div>
-                        <i class="fa fa-thumbs-down dislike"></i>
-                        <div id="fetch-dislike" ></div>
-                    </div>
-                </div>
-            </div>
-    </div>
 
     <!-------------------------------  message box popup open after login ----------------------------->
     <div id="message-box-popup" class="modal">
             <form onsubmit="return false;" class="modal-content animate">
-                <div class="imgcontainer">
-                    <span onclick="document.getElementById('message-box-popup').style.display='none'" class="close" title="Close PopUp">&times;</span>
+                <div class="imgcontainer" style="margin-top:0px;">
+                    <span style="  position: absolute;top: 0px;right: 0px;" onclick="document.getElementById('message-box-popup').style.display='none'" class="close" title="Close PopUp">&times;</span>
                 </div>
-        
-                <div class="container">
-                    <textarea style="width:auto;" id="message-box-comments" class="input-field" name="comment" onclick="" placeholder="Enter your comment here..."></textarea>
+                <h3>Enter your comment here</h3>
+                <div class="container" style="margin-top:20px;">
+                    <textarea style="width:90%" id="message-box-comments" class="input-field" name="comment" onclick="" placeholder="Enter your comment here..."></textarea>
                     <button onclick="Add_reply();" style="width: 8rem" class="btn">Add a Reply</button>  
                 </div>
             </form>
@@ -188,7 +160,6 @@ function login(){
             //
             document.getElementById("fetch-username").innerHTML = member;
             document.getElementById('new-message').style.display='none';
-            document.getElementById("fetch-name-comment").innerHTML = member;
             document.getElementById('comment-box').style.display='block';
             comment();
             
