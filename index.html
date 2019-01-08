@@ -10,7 +10,7 @@
     <!-- <script src="main.js" ></script>  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body  onload="myFunction()">
+<body  onload="save_div(Add_reply_count,relative);">
 
 <!----------------------------------------- Heading --------------------------------->
 
@@ -233,21 +233,23 @@ function add_element(comment_message){
 
         relative = document.getElementById('comment-boxes');
         d = document.getElementById(comment_box_id);
-        var message = d.outerHTML;
-        
+        let message = d.outerHTML;
+        console.log(message);
+
         message_array[Add_reply_count] = message;       
         localStorage.setItem("comment-box-div", JSON.stringify(message_array));
         retrievedData = localStorage.getItem("comment-box-div");
         message_array2 = JSON.parse(retrievedData);
-        
+
+
         var wrapper = document.createElement('div');
         wrapper.innerHTML =  message_array2[Add_reply_count];
         relative.appendChild(wrapper);
 
        
         Add_reply_count = Add_reply_count + 1;
-        
 }
+
 
 
 
