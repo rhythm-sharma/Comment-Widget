@@ -10,7 +10,7 @@
     <!-- <script src="main.js" ></script>  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body  onload="save_div(Add_reply_count,relative);">
+<body onload="myfun();">
 
 <!----------------------------------------- Heading --------------------------------->
 
@@ -136,10 +136,22 @@
 
 let member;
 let comment_message;
-let  Add_reply_count = 0;
-let  retrievedData;
-let message_array2 = [];
-let message_array = [];
+
+let comment_exists = 0;
+localStorage.setItem('comment_exists', comment_exists);
+let comment_exists_get = localStorage.getItem('comment_exists');
+
+
+let Add_reply_count =1;
+localStorage.setItem('Add_reply_count', Add_reply_count);
+Add_reply_count = 0;
+localStorage.setItem('Add_reply_count', Add_reply_count);
+let Add_reply_count_get = localStorage.getItem('Add_reply_count');
+console.log(Add_reply_count_get);
+
+let retrievedData;
+let message_array2;
+let message_array;
 
 
 var signup_username = ["Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
@@ -197,6 +209,7 @@ function signup(){
 }
 
 
+
 function Add_reply(){
     comment_message = document.getElementById("message-box-comments").value;
     document.getElementById('message-box-popup').style.display='none';
@@ -207,6 +220,11 @@ function Add_reply(){
 
 
 function add_element(comment_message){
+
+    if()
+
+
+    /////********************************** create a div same as sample comment  ****************************////////
     let comment_boxes = document.getElementById("comment-boxes");
     let clone = comment_boxes.firstElementChild.cloneNode(true);
     comment_boxes.appendChild(clone);
@@ -228,9 +246,13 @@ function add_element(comment_message){
         document.getElementsByClassName("comment-box")[Add_reply_count].id = 'comment-box-id' + String(Add_reply_count);
         let comment_box_id = document.getElementsByClassName("comment-box")[Add_reply_count].id;   ///it contain's id name
 
+
+    /////********************************** removing clone comment  ****************************////////
+        var comment_node = document.getElementById(comment_box_id);
+        comment_node.parentNode.removeChild(comment_node);
+
+
   /////*********************** changing comment-box-id *******************////////
-
-
         relative = document.getElementById('comment-boxes');
         d = document.getElementById(comment_box_id);
         let message = d.outerHTML;
@@ -241,17 +263,36 @@ function add_element(comment_message){
         retrievedData = localStorage.getItem("comment-box-div");
         message_array2 = JSON.parse(retrievedData);
 
+        if (message_array2 == 'undefined'){
 
-        var wrapper = document.createElement('div');
-        wrapper.innerHTML =  message_array2[Add_reply_count];
-        relative.appendChild(wrapper);
+        }else {
+        //print all comments
+        for(let i=0; i<message_array2.length; i++){
+            var wrapper = document.createElement('div');
+            wrapper.innerHTML =  message_array2[Add_reply_count];
+            relative.appendChild(wrapper);
+        }
+    }
 
-       
-        Add_reply_count = Add_reply_count + 1;
+    Add_reply_count = Add_reply_count + 1;
+    comment_exists = 1;
+    localStorage.setItem('comment_exists', comment_exists);
 }
 
+function myfun(){
+    if (message_array2 == 'undefined'){
 
-
+    }else {
+         relative = document.getElementById('comment-boxes');
+    //print all comments
+        for(let i=0; i<message_array2.length; i++){
+            var wrapper = document.createElement('div');
+            wrapper.innerHTML =  message_array2[i];
+            alert(message_array2[i]);
+            relative.appendChild(wrapper);
+        }
+    }
+}
 
 </script>
 
