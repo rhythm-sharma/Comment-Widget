@@ -10,7 +10,7 @@
     <!-- <script src="main.js" ></script>  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body onload="myfun();">
+<body onload="onloadfunction();">
 
 <!----------------------------------------- Heading --------------------------------->
 
@@ -136,6 +136,8 @@
 
 let member;
 let comment_message;
+let save_div = [];
+
 
 let comment_exists;
 localStorage.setItem('comment_exists', comment_exists);
@@ -236,14 +238,11 @@ function add_element(comment_message){
   /////*********************** changing comment-box-id *******************////////
         relative = document.getElementById('comment-boxes');
         d = document.getElementById(comment_box_id);
-        let message = d.outerHTML;
-        console.log(typeof(message));
-        message_array[Add_reply_count_get] = message;
-        localStorage.setItem('message_array',(message_array));
-        var message_array_get = (localStorage.getItem('message_array'));
-        console.log(message_array_get);
+        save_div.push(d.outerHTML);
+        localStorage.setItem("save_div", JSON.stringify(save_div));
+        var save_div2 = JSON.parse(localStorage['save_div']);
         var wrapper = document.createElement('div');
-        wrapper.innerHTML =  message_array[Add_reply_count_get];
+        wrapper.innerHTML =  save_div2;
         relative.appendChild(wrapper);
        
 
@@ -260,7 +259,21 @@ function add_element(comment_message){
 
 }
 
-function myfun(){
+function onloadfunction(){
+/// copy sample div and save it permanently
+// let save_div = [];
+
+// localStorage.setItem("save_div", JSON.stringify(save_div));
+
+// let relative = document.getElementById('comment-boxes');
+// save_div.push(document.getElementById('comment-box-id').outerHTML); 
+// localStorage.setItem("save_div", JSON.stringify(save_div));
+
+// var save_div2 = JSON.parse(localStorage['save_div']);
+
+// var wrapper = document.createElement('div');
+// wrapper.innerHTML =  save_div2;
+// relative.appendChild(wrapper);
 }
 
 </script>
