@@ -137,32 +137,20 @@
 let member;
 let comment_message;
 
-let comment_exists = 0;
+let comment_exists;
 localStorage.setItem('comment_exists', comment_exists);
 let comment_exists_get = localStorage.getItem('comment_exists');
 
 
-let Add_reply_count =1;
-localStorage.setItem('Add_reply_count', Add_reply_count);
-Add_reply_count = 0;
+let Add_reply_count = 0;
 localStorage.setItem('Add_reply_count', Add_reply_count);
 let Add_reply_count_get = localStorage.getItem('Add_reply_count');
-console.log(Add_reply_count_get);
 
-let retrievedData;
-let message_array2;
-let message_array;
-
-
-var signup_username = ["Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
-var signup_password = ['123','123','123','123','123','123'];
-
-var log_usr = document.getElementById("log-usr").value;
-var log_psw = document.getElementById("log-psw").value;
+let message_array = [];
 
 function exists(){
-    let signup_username = ["Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
-    let signup_password = ['123','123','123','123','123','123'];
+    let signup_username = ['r',"Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
+    let signup_password = ['r','123','123','123','123','123','123'];
     let log_usr = document.getElementById("log-usr").value;
     let log_psw = document.getElementById("log-psw").value;
     
@@ -221,8 +209,6 @@ function Add_reply(){
 
 function add_element(comment_message){
 
-    if()
-
 
     /////********************************** create a div same as sample comment  ****************************////////
     let comment_boxes = document.getElementById("comment-boxes");
@@ -231,67 +217,50 @@ function add_element(comment_message){
    
     console.log(member);
     /////********************************** changing comment-username-after-login  ****************************////////
-    document.getElementsByClassName("fetch-name-class")[Add_reply_count].id = 'fetch-name' + String(Add_reply_count);
-    let fetch_name_id = document.getElementsByClassName("fetch-name-class")[Add_reply_count].id;
+    document.getElementsByClassName("fetch-name-class")[Add_reply_count_get].id = 'fetch-name' + String(Add_reply_count_get);
+    let fetch_name_id = document.getElementsByClassName("fetch-name-class")[Add_reply_count_get].id;
     document.getElementById(fetch_name_id).innerHTML = member;
 
     /////********************************** changing comment-message-after-login  ****************************////////
-    document.getElementsByClassName("row2")[Add_reply_count].id = 'fetch-message' + String(Add_reply_count);
-    let fetch_message_id = document.getElementsByClassName("row2")[Add_reply_count].id;
+    document.getElementsByClassName("row2")[Add_reply_count_get].id = 'fetch-message' + String(Add_reply_count_get);
+    let fetch_message_id = document.getElementsByClassName("row2")[Add_reply_count_get].id;
     document.getElementById(fetch_message_id).innerHTML = comment_message;
 
     /////********************************** saving the shit at one place  ****************************////////
 
         /////*********************** changing comment-box-id *******************////////
-        document.getElementsByClassName("comment-box")[Add_reply_count].id = 'comment-box-id' + String(Add_reply_count);
-        let comment_box_id = document.getElementsByClassName("comment-box")[Add_reply_count].id;   ///it contain's id name
-
-
-    /////********************************** removing clone comment  ****************************////////
-        var comment_node = document.getElementById(comment_box_id);
-        comment_node.parentNode.removeChild(comment_node);
+        document.getElementsByClassName("comment-box")[Add_reply_count_get].id = 'comment-box-id' + String(Add_reply_count_get);
+        let comment_box_id = document.getElementsByClassName("comment-box")[Add_reply_count_get].id;   ///it contain's id name
 
 
   /////*********************** changing comment-box-id *******************////////
         relative = document.getElementById('comment-boxes');
         d = document.getElementById(comment_box_id);
         let message = d.outerHTML;
-        console.log(message);
+        console.log(typeof(message));
+        message_array[Add_reply_count_get] = message;
+        localStorage.setItem('message_array',(message_array));
+        var message_array_get = (localStorage.getItem('message_array'));
+        console.log(message_array_get);
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML =  message_array[Add_reply_count_get];
+        relative.appendChild(wrapper);
+       
 
-        message_array[Add_reply_count] = message;       
-        localStorage.setItem("comment-box-div", JSON.stringify(message_array));
-        retrievedData = localStorage.getItem("comment-box-div");
-        message_array2 = JSON.parse(retrievedData);
-
-        if (message_array2 == 'undefined'){
-
-        }else {
-        //print all comments
-        for(let i=0; i<message_array2.length; i++){
-            var wrapper = document.createElement('div');
-            wrapper.innerHTML =  message_array2[Add_reply_count];
-            relative.appendChild(wrapper);
-        }
-    }
+    /////********************************** removing clone comment  ****************************////////
+    var comment_node = document.getElementById(comment_box_id);
+    comment_node.parentNode.removeChild(comment_node);
 
     Add_reply_count = Add_reply_count + 1;
+    localStorage.setItem('Add_reply_count', Add_reply_count);
+
     comment_exists = 1;
     localStorage.setItem('comment_exists', comment_exists);
+
+
 }
 
 function myfun(){
-    if (message_array2 == 'undefined'){
-
-    }else {
-         relative = document.getElementById('comment-boxes');
-    //print all comments
-        for(let i=0; i<message_array2.length; i++){
-            var wrapper = document.createElement('div');
-            wrapper.innerHTML =  message_array2[i];
-            alert(message_array2[i]);
-            relative.appendChild(wrapper);
-        }
-    }
 }
 
 </script>
