@@ -10,7 +10,7 @@
     <!-- <script src="main.js" ></script>  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body onload="onloadfunction();">
+<body>
 
 <!----------------------------------------- Heading --------------------------------->
 
@@ -25,17 +25,16 @@
 
 <!----------------------------------------- Sample - comment    --------------------------------->
     <div id="comment-boxes">    
-        <div>
-            <div id="comment-box-id" class="comment-box">
+            <div id="comment-box-id" class="comment-box-class">
                 <div class="photo">
                 <img class="img" src="https://robohash.org/0" alt="photo">
             </div>
             <div class="information">
                 <div class="row1">
-                    <div class="name"><strong class="fetch-name-class" id="fetch-name">Rhythm</strong></div>
+                    <div class="name"><strong class="comment-name-class" id="fetch-name">Rhythm</strong></div>
                     <div class="time_ago" id="fetch-time">5 min ago</div>
                 </div>
-                <div class="row2" id="fetch-message">
+                <div class="row2" class="comment-message-class" id="fetch-message">
                     <!-- <textarea id="comments" class="input-field" style="height:100%;width :200%;" name="comment" placeholder="Enter your comment here..."></textarea> -->
                     This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                 </div>
@@ -50,7 +49,6 @@
                 </div>
             </div>
             </div>
-        </div>
     </div>
 
 <!----------------------------------------- Comment-box for guest --------------------------------->
@@ -130,25 +128,49 @@
 
     </div>
 
+    <button class="button" onclick="show_div()">clickme</button>
     
 
 <script>    
 
 let member;
 let comment_message;
-let save_div = [];
+let comment_boxes = document.getElementById("comment-boxes");
+var wrapper = document.createElement('div');
+
+// let mylist = [];
+localStorage['mylist'] = JSON.stringify(mylist);
+// var mylist = JSON.parse(localStorage['mylist']);
 
 
-let comment_exists;
-localStorage.setItem('comment_exists', comment_exists);
-let comment_exists_get = localStorage.getItem('comment_exists');
+function store_btn_click(){
+if(typeof(Storage) !== "undefined") {
+        if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+        }else{
+            localStorage.clickcount = 0;
+        }
+    }
+}
 
 
-let Add_reply_count = 0;
-localStorage.setItem('Add_reply_count', Add_reply_count);
-let Add_reply_count_get = localStorage.getItem('Add_reply_count');
 
-let message_array = [];
+// if(save_div2 != 'undefined'){
+//     for(let i = 0; i<localStorage.clickcount; i++){
+//         wrapper.innerHTML =  save_div2[i];
+//         comment_boxes.appendChild(wrapper);
+//     }
+// }
+
+function show_div(){
+    for(let i = 0; i<localStorage.clickcount; i++){
+        console.log(typeof(mylist[i]));
+        console.log( mylist[i]);
+    wrapper.innerHTML =  mylist[i];
+    comment_boxes.appendChild(wrapper);
+    }
+}
+
 
 function exists(){
     let signup_username = ['r',"Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
@@ -199,82 +221,50 @@ function signup(){
 }
 
 
-
 function Add_reply(){
+
+    /////********************************** Storing add btn clicks ****************************////////
+    store_btn_click();
+    /////////********************************************************************/////////////////
     comment_message = document.getElementById("message-box-comments").value;
+    document.getElementById("message-box-comments").innerHTML = "";
     document.getElementById('message-box-popup').style.display='none';
-    console.log(comment_message);
-    add_element(comment_message);
-}
+    console.log(comment_message,localStorage.clickcount);
 
-
-
-function add_element(comment_message){
-
-
-    /////********************************** create a div same as sample comment  ****************************////////
-    let comment_boxes = document.getElementById("comment-boxes");
+    /////********************************** changing comment-username-after-login  ****************************////////
+    
+   
     let clone = comment_boxes.firstElementChild.cloneNode(true);
     comment_boxes.appendChild(clone);
-   
-    console.log(member);
+
+    console.log(localStorage.clickcount);
     /////********************************** changing comment-username-after-login  ****************************////////
-    document.getElementsByClassName("fetch-name-class")[Add_reply_count_get].id = 'fetch-name' + String(Add_reply_count_get);
-    let fetch_name_id = document.getElementsByClassName("fetch-name-class")[Add_reply_count_get].id;
-    document.getElementById(fetch_name_id).innerHTML = member;
+    let comment_name_class = document.getElementsByClassName("comment-name-class")[localStorage.clickcount]
+    comment_name_class.innerHTML = member;
 
     /////********************************** changing comment-message-after-login  ****************************////////
-    document.getElementsByClassName("row2")[Add_reply_count_get].id = 'fetch-message' + String(Add_reply_count_get);
-    let fetch_message_id = document.getElementsByClassName("row2")[Add_reply_count_get].id;
-    document.getElementById(fetch_message_id).innerHTML = comment_message;
+    let comment_message_class = document.getElementsByClassName("row2")[localStorage.clickcount]
+    comment_message_class.innerHTML = comment_message;
 
     /////********************************** saving the shit at one place  ****************************////////
+    d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
+    localStorage['mylist'] = JSON.stringify(mylist);
+    mylist.push(d.outerHTML);
 
-        /////*********************** changing comment-box-id *******************////////
-        document.getElementsByClassName("comment-box")[Add_reply_count_get].id = 'comment-box-id' + String(Add_reply_count_get);
-        let comment_box_id = document.getElementsByClassName("comment-box")[Add_reply_count_get].id;   ///it contain's id name
 
+    wrapper.innerHTML =  mylist[localStorage.clickcount];
+    comment_boxes.appendChild(wrapper);
 
-  /////*********************** changing comment-box-id *******************////////
-        relative = document.getElementById('comment-boxes');
-        d = document.getElementById(comment_box_id);
-        save_div.push(d.outerHTML);
-        localStorage.setItem("save_div", JSON.stringify(save_div));
-        var save_div2 = JSON.parse(localStorage['save_div']);
-        var wrapper = document.createElement('div');
-        wrapper.innerHTML =  save_div2;
-        relative.appendChild(wrapper);
-       
+    for(let i = 0; i<localStorage.clickcount; i++){
+    console.log(mylist[i]);
+    }
 
-    /////********************************** removing clone comment  ****************************////////
-    var comment_node = document.getElementById(comment_box_id);
+    /////********************************** removing clone comment  ****************************////////    
+    var comment_node = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
     comment_node.parentNode.removeChild(comment_node);
 
-    Add_reply_count = Add_reply_count + 1;
-    localStorage.setItem('Add_reply_count', Add_reply_count);
-
-    comment_exists = 1;
-    localStorage.setItem('comment_exists', comment_exists);
-
-
 }
 
-function onloadfunction(){
-/// copy sample div and save it permanently
-// let save_div = [];
-
-// localStorage.setItem("save_div", JSON.stringify(save_div));
-
-// let relative = document.getElementById('comment-boxes');
-// save_div.push(document.getElementById('comment-box-id').outerHTML); 
-// localStorage.setItem("save_div", JSON.stringify(save_div));
-
-// var save_div2 = JSON.parse(localStorage['save_div']);
-
-// var wrapper = document.createElement('div');
-// wrapper.innerHTML =  save_div2;
-// relative.appendChild(wrapper);
-}
 
 </script>
 

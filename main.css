@@ -27,7 +27,7 @@ h3{
     margin: 5px;
 }
 
-.comment-box{
+.comment-box-class{
     margin: 20px;
     display: flex;
     flex-direction: row;
