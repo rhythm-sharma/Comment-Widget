@@ -10,7 +10,7 @@
     <!-- <script src="main.js" ></script>  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="show_div();">
 
 <!----------------------------------------- Heading --------------------------------->
 
@@ -139,7 +139,7 @@ let comment_boxes = document.getElementById("comment-boxes");
 var wrapper = document.createElement('div');
 
 // let mylist = [];
-localStorage['mylist'] = JSON.stringify(mylist);
+// localStorage['mylist'] = JSON.stringify(mylist);
 // var mylist = JSON.parse(localStorage['mylist']);
 
 
@@ -163,13 +163,19 @@ if(typeof(Storage) !== "undefined") {
 // }
 
 function show_div(){
-    for(let i = 0; i<localStorage.clickcount; i++){
-        console.log(typeof(mylist[i]));
-        console.log( mylist[i]);
-    wrapper.innerHTML =  mylist[i];
-    comment_boxes.appendChild(wrapper);
-    }
+    // for(var i=1, len=localStorage.length; i<len+1; i++) {
+    // let key = localStorage.key(i);
+    // let value = localStorage[key];
+    // wrapper.innerHTML =  value;
+    // comment_boxes.appendChild(wrapper);
+    for(var i=0, len=localStorage.length; i<len; i++) {
+    var key = localStorage.key(i);
+    var value = localStorage[key];
+    var d1 = document.getElementById('comment-boxes');
+    d1.insertAdjacentHTML('beforeend', value);
 }
+}
+
 
 
 function exists(){
@@ -195,7 +201,7 @@ function login(){
             //change div with login member information
             document.getElementById('modal-wrapper').style.display='none';
             document.getElementById('fetch-username-after-login').innerHTML = member;
-
+            document.getElementById("message-box-comments").innerHTML = "";
             // enter message in message box //
             document.getElementById('message-box-popup').style.display='block'
             
@@ -227,7 +233,7 @@ function Add_reply(){
     store_btn_click();
     /////////********************************************************************/////////////////
     comment_message = document.getElementById("message-box-comments").value;
-    document.getElementById("message-box-comments").innerHTML = "";
+ 
     document.getElementById('message-box-popup').style.display='none';
     console.log(comment_message,localStorage.clickcount);
 
@@ -246,18 +252,49 @@ function Add_reply(){
     let comment_message_class = document.getElementsByClassName("row2")[localStorage.clickcount]
     comment_message_class.innerHTML = comment_message;
 
+
+
+
+
+
+
+    /////********************************** saving the shit differently  ****************************////////
+    d = document.getElementsByClassName("comment-box-class")[0];
+
+
+        localStorage.setItem(`div ${localStorage.clickcount}`, `${d.outerHTML}`);
+        let value = localStorage[`div ${localStorage.clickcount}`];
+        console.log(value);
+        wrapper.innerHTML =  value;
+        comment_boxes.appendChild(wrapper);
+        
+    
+    //     for(let i=0, len=localStorage.length; i<len; i++) {
+    // let key = localStorage.key(i);
+    // console.log(key);
+    // let value1 = localStorage[key];
+    // var d1 = document.getElementById('comment-boxes');
+    // d1.insertAdjacentHTML('beforeend', value);
+    // }
+
+
+
+
+
+
+
     /////********************************** saving the shit at one place  ****************************////////
-    d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
-    localStorage['mylist'] = JSON.stringify(mylist);
-    mylist.push(d.outerHTML);
+    // d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
+    // localStorage['mylist'] = JSON.stringify(mylist);
+    // mylist.push(d.outerHTML);
 
 
-    wrapper.innerHTML =  mylist[localStorage.clickcount];
-    comment_boxes.appendChild(wrapper);
+    // wrapper.innerHTML =  mylist[localStorage.clickcount];
+    // comment_boxes.appendChild(wrapper);
 
-    for(let i = 0; i<localStorage.clickcount; i++){
-    console.log(mylist[i]);
-    }
+    // for(let i = 0; i<localStorage.clickcount; i++){
+    // console.log(mylist[i]);
+    // }
 
     /////********************************** removing clone comment  ****************************////////    
     var comment_node = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
