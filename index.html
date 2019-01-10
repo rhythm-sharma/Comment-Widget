@@ -41,12 +41,11 @@
                 <div class="row3">
                     <div class="reply"><a style="text-decoration: none;" href="">Reply</a></div>
                     <div class="vote">
-                        <div id="fetch-like">   
-                            <i class="fa fa-thumbs-up like"></i>
-                            <b id="fetch-like-count">0</b></div>
+                        <div id="fetch-like">  
+                            <i id="a" class="fa fa-thumbs-up like fetch-like-count"  onclick="like(this.id);">0</i>
+                        </div>
                         <div id="fetch-dislike">
-                            <i class="fa fa-thumbs-down dislike"></i>
-                            <b id="fetch-dislike-count">0</b>
+                            <i id="b" class="fa fa-thumbs-down dislike fetch-dislike-count" onclick="dislike(this.id);">0</i>
                         </div>
                     </div>
                 </div>
@@ -170,11 +169,44 @@ function show_div(){
         }
 
 
-//*********************************   showing save comments *****************************//    
+//*********************************   showing login member name on top-right corner *****************************//    
     if(localStorage['last_login_member'] != null)
         document.getElementById('fetch-username-after-login').innerHTML = localStorage['last_login_member'];
     }
 
+//*********************************   showing likes and dislikes after reload*****************************//    
+    for( let m = 1; m<=localStorage.clickcount; m++){
+            document.getElementById(m).innerHTML = localStorage[`like ${m}`];
+            if(localStorage[`like ${m}`] != 0){
+                document.getElementById(m).style.color = 'black';
+            }
+            document.getElementById(`d${m}`).innerHTML = localStorage[`dislike ${m}`];
+            if(localStorage[`dislike ${m}`] != 0){
+                document.getElementById(`d${m}`).style.color = 'black';
+            }
+        }
+
+   
+}
+
+function like(like_id){
+    for(let k =1; k<= localStorage.clickcount; k++){
+        if(like_id == k ){
+            document.getElementById(like_id).style.color = 'black';
+            localStorage[`like ${k}`,  localStorage[`like ${k}`] = Number(localStorage[`like ${k}`]) + 1];
+            document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
+        }
+    }
+}
+
+function dislike(dislike_id){
+    for(let z =1; z<= localStorage.clickcount; z++){
+        if(dislike_id == `d${z}` ){
+            document.getElementById(dislike_id).style.color = 'black';
+            localStorage[`dislike ${z}`,  localStorage[`dislike ${z}`] = Number(localStorage[`dislike ${z}`]) + 1];
+            document.getElementById(dislike_id).innerHTML = localStorage[`dislike ${z}`];
+        }
+    }
 }
 
 
@@ -256,6 +288,9 @@ function Add_reply(){
     let comment_message_class = document.getElementsByClassName("row2")[localStorage.clickcount]
     comment_message_class.innerHTML = comment_message;
 
+    /////********************************** changing comment-message-after-login  ****************************////////
+    document.getElementsByClassName('fetch-like-count')[localStorage.clickcount].id = localStorage.clickcount;
+    document.getElementsByClassName('fetch-dislike-count')[localStorage.clickcount].id = 'd' + localStorage.clickcount;
 
     /////********************************** saving member name in localStorage  ****************************////////
     last_login_member(member);
@@ -265,9 +300,13 @@ function Add_reply(){
 
     /////********************************** saving the shit differently  ****************************////////
     d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
+    
+    localStorage.setItem(`div ${localStorage.clickcount}`, `${d.outerHTML}`);
 
+    /////********************************** like and dislike ****************************////////
+    localStorage.setItem(`like ${localStorage.clickcount}`, 0);
+    localStorage.setItem(`dislike ${localStorage.clickcount}`, 0);
 
-        localStorage.setItem(`div ${localStorage.clickcount}`, `${d.outerHTML}`);
         // let value = localStorage[`div ${localStorage.clickcount}`];
         // console.log(value);
         // var d1 = document.getElementById('comment-boxes');

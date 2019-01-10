@@ -110,7 +110,7 @@ h3{
     margin-left: 0.5em;
 }
 
-#fetch-like-count, #fetch-dislike-count{
+.fetch-like-count, .fetch-dislike-count{
     margin-right: 0.5em;
     margin-left: 0.5em;
 }
