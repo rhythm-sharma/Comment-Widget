@@ -163,22 +163,19 @@ if(typeof(Storage) !== "undefined") {
 // }
 
 function show_div(){
-    // for(var i=1, len=localStorage.length; i<len+1; i++) {
-    // let key = localStorage.key(i);
-    // let value = localStorage[key];
-    // wrapper.innerHTML =  value;
-    // comment_boxes.appendChild(wrapper);
-    for(var i=0, len=localStorage.length; i<len; i++) {
-    var key = localStorage.key(i);
-    var value = localStorage[key];
-    if(key == 'clickcount'){
-
-    }else{
-    var d1 = document.getElementById('comment-boxes');
-    d1.insertAdjacentHTML('beforeend', value);}
+    if(localStorage != null){
+        for(var i=1, len=localStorage.length; i<=len; i++) {
+            for(var j=1, len=localStorage.length; j<=len; j++) {
+                var key = localStorage.key(j-1);
+                var value = localStorage[key];
+                if(key == `div ${i}`){
+                    var d1 = document.getElementById('comment-boxes');
+                    d1.insertAdjacentHTML('beforeend', value);
+                }
+            }
+        }
+    }
 }
-}
-
 
 
 function exists(){
@@ -238,13 +235,13 @@ function Add_reply(){
     comment_message = document.getElementById("message-box-comments").value;
  
     document.getElementById('message-box-popup').style.display='none';
-    console.log(comment_message,localStorage.clickcount);
+    console.log(comment_message);
 
     /////********************************** changing comment-username-after-login  ****************************////////
     
-   
     let clone =  document.getElementsByClassName("comment-box-class")[0];
     clone = clone.outerHTML;
+   
     // comment_boxes.appendChild(clone);
     var c1 = document.getElementById('comment-boxes');
     c1.insertAdjacentHTML('beforeend', `${clone}`);
@@ -283,8 +280,16 @@ function Add_reply(){
     // d1.insertAdjacentHTML('beforeend', value);
     // }
 
+    // for(var i=0, len=localStorage.length; i<len; i++) {
+    // var key = localStorage.key(i);
+    // var value = localStorage[key];
+    // if(key == 'clickcount'){
 
-
+    // }else{
+    // var d1 = document.getElementById('comment-boxes');
+    // d1.insertAdjacentHTML('afterend', value);}
+    
+   
 
 
 
@@ -303,12 +308,13 @@ function Add_reply(){
     // }
 
     /////********************************** removing clone comment  ****************************////////    
-    var comment_node = document.getElementsByClassName("comment-box-class")[1];
-    comment_node.parentNode.removeChild(comment_node);
-
+    // let comment_node = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
+    // comment_node.parentNode.removeChild(comment_node);
+    
+    /////********************************** reload page  ****************************////////    
     location.reload();
-}
 
+}
 
 </script>
 
