@@ -41,10 +41,13 @@
                 <div class="row3">
                     <div class="reply"><a style="text-decoration: none;" href="">Reply</a></div>
                     <div class="vote">
-                        <i class="fa fa-thumbs-up like"></i>
-                        <div id="fetch-like"></div>
-                        <i class="fa fa-thumbs-down dislike"></i>
-                        <div id="fetch-dislike" ></div>
+                        <div id="fetch-like">   
+                            <i class="fa fa-thumbs-up like"></i>
+                            <b id="fetch-like-count">0</b></div>
+                        <div id="fetch-dislike">
+                            <i class="fa fa-thumbs-down dislike"></i>
+                            <b id="fetch-dislike-count">0</b>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,14 +124,6 @@
                 </div>
             </form>
         </div>
-
-    <!-------------------------------  after add reply btn press ----------------------------->
-
-    <div>
-
-    </div>
-
-    <button class="button" onclick="show_div()">clickme</button>
     
 
 <script>    
@@ -154,15 +149,14 @@ if(typeof(Storage) !== "undefined") {
 }
 
 
+function last_login_member(member){
+    localStorage.setItem('last_login_member', member);
+}
 
-// if(save_div2 != 'undefined'){
-//     for(let i = 0; i<localStorage.clickcount; i++){
-//         wrapper.innerHTML =  save_div2[i];
-//         comment_boxes.appendChild(wrapper);
-//     }
-// }
 
 function show_div(){
+
+//*********************************   showing save comments *****************************//    
     if(localStorage != null){
         for(var i=1, len=localStorage.length; i<=len; i++) {
             for(var j=1, len=localStorage.length; j<=len; j++) {
@@ -174,7 +168,13 @@ function show_div(){
                 }
             }
         }
+
+
+//*********************************   showing save comments *****************************//    
+    if(localStorage['last_login_member'] != null)
+        document.getElementById('fetch-username-after-login').innerHTML = localStorage['last_login_member'];
     }
+
 }
 
 
@@ -227,6 +227,7 @@ function signup(){
 }
 
 
+
 function Add_reply(){
 
     /////********************************** Storing add btn clicks ****************************////////
@@ -256,7 +257,8 @@ function Add_reply(){
     comment_message_class.innerHTML = comment_message;
 
 
-
+    /////********************************** saving member name in localStorage  ****************************////////
+    last_login_member(member);
 
 
 
@@ -315,6 +317,9 @@ function Add_reply(){
     location.reload();
 
 }
+
+
+
 
 </script>
 

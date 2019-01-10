@@ -93,18 +93,29 @@ h3{
     flex-direction: row;
 }
 
-.like, .dislike{
-    margin: 0 0 0 1em;
+.like, .dislike{    
+    margin-right: 0.5em;
+    margin-left: 0.5em;
     color: rgba(17, 12, 12, 0.4);
 }
 
-.like:hover{
+.like:hover,.dislike:hover{
     color: black;
 }
 
-.dislike:hover{
-    color: black;
+#fetch-like,#fetch-dislike{
+    display: flex;
+    flex-direction: row;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
 }
+
+#fetch-like-count, #fetch-dislike-count{
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}
+
+
 
 .new-message{
     display: flex;
