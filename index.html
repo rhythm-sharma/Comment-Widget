@@ -17,7 +17,7 @@
     <header class="header">
     <div style="margin: 0 0 0 1em" class="top-heading"><h3>Comments</h3><img style="vertical-align:bottom;min-height:28px;max-height:28px;min-width:28px;max-width:28px;" src="src/img/chat.svg" alt="comment-img"></div>
     <div style=" width:auto;background-color: rgba(192, 171, 171, 0.2);box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="login-div">
-        <img style="background-color:white;border-radius:50%;" class="img" src="https://robohash.org/0" alt="photo">
+        <img style="background-color:white;border-radius:50%;" class="img" src="https://robohash.org/345" alt="photo">
         <p style="margin-left:15px; margin-right:5px;" id="fetch-username-after-login">guest</p>
     </div>
     </header>
@@ -27,7 +27,7 @@
     <div id="comment-boxes">    
             <div id="comment-box-id" class="comment-box-class">
                 <div class="photo">
-                <img class="img" src="https://robohash.org/0" alt="photo">
+                <img class="img" src="https://robohash.org/ssdf" alt="photo">
             </div>
             <div class="information">
                 <div class="row1">
@@ -189,12 +189,36 @@ function show_div(){
    
 }
 
+
+function member_like_exists(like_key){
+    for(let i= 0; i<localStorage.length ; i++ ){
+        if(like_key == localStorage.key(i)){
+            return true;
+        }else{
+            localStorage.setItem(like_key, 0);
+            return false;
+        }
+    }
+}
+
 function like(like_id){
     for(let k =1; k<= localStorage.clickcount; k++){
         if(like_id == k ){
-            document.getElementById(like_id).style.color = 'black';
-            localStorage[`like ${k}`,  localStorage[`like ${k}`] = Number(localStorage[`like ${k}`]) + 1];
-            document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
+            let last_login_member_like = localStorage['last_login_member'];
+            console.log(last_login_member_like);
+            let like_key = `${last_login_member_like} like ${like_id}`;
+            console.log(like_key);
+            if(member_like_exists(like_key) == true){
+                alert(`member already liked it`);
+
+            }else if(localStorage[like_key] == 0){ 
+                document.getElementById(like_id).style.color = 'black';
+                localStorage[`like ${k}`,  localStorage[`like ${k}`] = Number(localStorage[`like ${k}`]) + 1];
+                document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
+                localStorage.setItem(like_key, 1);    
+            }else{
+                alert(`something else`);
+            }
         }
     }
 }
@@ -236,7 +260,6 @@ function login(){
             document.getElementById("message-box-comments").innerHTML = "";
             // enter message in message box //
             document.getElementById('message-box-popup').style.display='block'
-            
         }else{
             document.getElementById('modal-wrapper').style.display='none';
             document.getElementById('modal-wrapper-2').style.display='block';
@@ -270,7 +293,7 @@ function Add_reply(){
     document.getElementById('message-box-popup').style.display='none';
     console.log(comment_message);
 
-    /////********************************** changing comment-username-after-login  ****************************////////
+    /////********************************** clone sample div  ****************************////////
     
     let clone =  document.getElementsByClassName("comment-box-class")[0];
     clone = clone.outerHTML;
@@ -288,14 +311,12 @@ function Add_reply(){
     let comment_message_class = document.getElementsByClassName("row2")[localStorage.clickcount]
     comment_message_class.innerHTML = comment_message;
 
-    /////********************************** changing comment-message-after-login  ****************************////////
+    /////********************************** create variables for like and dislike  ****************************////////
     document.getElementsByClassName('fetch-like-count')[localStorage.clickcount].id = localStorage.clickcount;
     document.getElementsByClassName('fetch-dislike-count')[localStorage.clickcount].id = 'd' + localStorage.clickcount;
 
     /////********************************** saving member name in localStorage  ****************************////////
     last_login_member(member);
-
-
 
 
     /////********************************** saving the shit differently  ****************************////////
@@ -307,50 +328,6 @@ function Add_reply(){
     localStorage.setItem(`like ${localStorage.clickcount}`, 0);
     localStorage.setItem(`dislike ${localStorage.clickcount}`, 0);
 
-        // let value = localStorage[`div ${localStorage.clickcount}`];
-        // console.log(value);
-        // var d1 = document.getElementById('comment-boxes');
-        // d1.insertAdjacentHTML('beforeend', value);
-        
-    
-    //     for(let i=0, len=localStorage.length; i<len; i++) {
-    // let key = localStorage.key(i);
-    // console.log(key);
-    // let value1 = localStorage[key];
-    // var d1 = document.getElementById('comment-boxes');
-    // d1.insertAdjacentHTML('beforeend', value);
-    // }
-
-    // for(var i=0, len=localStorage.length; i<len; i++) {
-    // var key = localStorage.key(i);
-    // var value = localStorage[key];
-    // if(key == 'clickcount'){
-
-    // }else{
-    // var d1 = document.getElementById('comment-boxes');
-    // d1.insertAdjacentHTML('afterend', value);}
-    
-   
-
-
-
-
-    /////********************************** saving the shit at one place  ****************************////////
-    // d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
-    // localStorage['mylist'] = JSON.stringify(mylist);
-    // mylist.push(d.outerHTML);
-
-
-    // wrapper.innerHTML =  mylist[localStorage.clickcount];
-    // comment_boxes.appendChild(wrapper);
-
-    // for(let i = 0; i<localStorage.clickcount; i++){
-    // console.log(mylist[i]);
-    // }
-
-    /////********************************** removing clone comment  ****************************////////    
-    // let comment_node = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
-    // comment_node.parentNode.removeChild(comment_node);
     
     /////********************************** reload page  ****************************////////    
     location.reload();
