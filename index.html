@@ -189,36 +189,12 @@ function show_div(){
    
 }
 
-
-function member_like_exists(like_key){
-    for(let i= 0; i<localStorage.length ; i++ ){
-        if(like_key == localStorage.key(i)){
-            return true;
-        }else{
-            localStorage.setItem(like_key, 0);
-            return false;
-        }
-    }
-}
-
 function like(like_id){
     for(let k =1; k<= localStorage.clickcount; k++){
         if(like_id == k ){
-            let last_login_member_like = localStorage['last_login_member'];
-            console.log(last_login_member_like);
-            let like_key = `${last_login_member_like} like ${like_id}`;
-            console.log(like_key);
-            if(member_like_exists(like_key) == true){
-                alert(`member already liked it`);
-
-            }else if(localStorage[like_key] == 0){ 
-                document.getElementById(like_id).style.color = 'black';
-                localStorage[`like ${k}`,  localStorage[`like ${k}`] = Number(localStorage[`like ${k}`]) + 1];
-                document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
-                localStorage.setItem(like_key, 1);    
-            }else{
-                alert(`something else`);
-            }
+            document.getElementById(like_id).style.color = 'black';
+            localStorage[`like ${k}`,  localStorage[`like ${k}`] = Number(localStorage[`like ${k}`]) + 1];
+            document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
         }
     }
 }
