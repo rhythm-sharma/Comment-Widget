@@ -39,7 +39,7 @@
                     This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
                 </div>
                 <div class="row3">
-                    <div class="reply"><a style="text-decoration: none;" href="">Reply</a></div>
+                    <div class="reply"><button id="r" class="reply" style="text-decoration:none;border:none;" class="button">Reply</button></div>
                     <div class="vote">
                         <div id="fetch-like">  
                             <i id="a" class="fa fa-thumbs-up like fetch-like-count"  onclick="like(this.id);">0</i>
@@ -61,7 +61,7 @@
             <textarea id="comments" class="input-field" name="comment" onclick="document.getElementById('modal-wrapper').style.display='block'" placeholder="Enter your comment here..."></textarea>
         </div>
         <div class="submit-button">
-            <button onclick="document.getElementById('modal-wrapper').style.display='block'" style="width: 8rem" class="btn">Add a Reply</button>
+            <button onclick="document.getElementById('modal-wrapper').style.display='block'" style="width: 8rem;margin-top:1em;margin-left:2em;" class="btn" class="button_other">Add a Comment</button>
         </div>
     </div>
 
@@ -79,8 +79,8 @@
             <div class="container">
                 <input id="log-usr" autocomplete="off" type="text" placeholder="Enter Username" name="uname" required>
                 <input id="log-psw" autocomplete="off" type="password" placeholder="Enter Password" name="psw" required>        
-                <button type="submit" onclick="login();">Login</button>
-                <button onclick="document.getElementById('modal-wrapper-2').style.display='block';document.getElementById('modal-wrapper').style.display='none'" class="button">Sign Up</button>         
+                <button class="button_other" type="submit" onclick="login();">Login</button>
+                <button onclick="document.getElementById('modal-wrapper-2').style.display='block';document.getElementById('modal-wrapper').style.display='none'" class="button button_other">Sign Up</button>         
             </div>
         </form>
     </div>
@@ -101,7 +101,7 @@
             <div class="container">
                 <input id="sign-usr" autocomplete="off" type="text" placeholder="Enter Username" name="uname" required>
                 <input id="sign-psw" autocomplete="off" type="password" placeholder="Enter Password" name="psw" required>        
-                <button type="submit">Sign Up</button>
+                <button class="button_other" type="submit">Sign Up</button>
             </div>
         </form>
     </div>
@@ -119,11 +119,10 @@
                 <h3>Enter your comment here</h3>
                 <div class="container" style="margin-top:20px;">
                     <textarea autocomplete="off" style="width:90%" id="message-box-comments" class="input-field" name="comment" onclick="" placeholder="Enter your comment here..."></textarea>
-                    <button onclick="Add_reply();" style="width: 8rem" class="btn">Add a Reply</button>  
+                    <button onclick="Add_comment();" style="width: 8rem;margin-left:2em;margin-top:1em;" class="btn">Add a comment</button>  
                 </div>
             </form>
-        </div>
-    
+        </div> 
 
 <script>    
 
@@ -205,7 +204,6 @@ function like(like_id){
                     continue;
                 }
             }
-
             if(found == 1){
                 alert('you liked it already');
             }else{
@@ -290,9 +288,7 @@ function signup(){
     alert(retrievedname.length);
 }
 
-
-
-function Add_reply(){
+function Add_comment(){
 
     /////********************************** Storing add btn clicks ****************************////////
     store_btn_click();
@@ -311,10 +307,10 @@ function Add_reply(){
     var c1 = document.getElementById('comment-boxes');
     c1.insertAdjacentHTML('beforeend', `${clone}`);
 
-    console.log(localStorage.clickcount);
     /////********************************** changing comment-username-after-login  ****************************////////
     let comment_name_class = document.getElementsByClassName("comment-name-class")[localStorage.clickcount]
     comment_name_class.innerHTML = member;
+
 
     /////********************************** changing comment-message-after-login  ****************************////////
     let comment_message_class = document.getElementsByClassName("row2")[localStorage.clickcount]
@@ -324,6 +320,7 @@ function Add_reply(){
     document.getElementsByClassName('fetch-like-count')[localStorage.clickcount].id = localStorage.clickcount;
     document.getElementsByClassName('fetch-dislike-count')[localStorage.clickcount].id = 'd' + localStorage.clickcount;
 
+
     /////********************************** saving member name in localStorage  ****************************////////
     last_login_member(member);
 
@@ -332,6 +329,7 @@ function Add_reply(){
     d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
     
     localStorage.setItem(`div ${localStorage.clickcount}`, `${d.outerHTML}`);
+
 
     /////********************************** like and dislike ****************************////////
     localStorage.setItem(`like ${localStorage.clickcount}`, 0);
