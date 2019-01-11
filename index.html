@@ -192,9 +192,28 @@ function show_div(){
 function like(like_id){
     for(let k =1; k<= localStorage.clickcount; k++){
         if(like_id == k ){
-            document.getElementById(like_id).style.color = 'black';
-            localStorage[`like ${k}`,  localStorage[`like ${k}`] = Number(localStorage[`like ${k}`]) + 1];
-            document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
+            let found;
+            console.log(localStorage['last_login_member']);
+            console.log(like_id);
+            let searching_name = `${localStorage['last_login_member']} like ${like_id}`;
+            console.log(searching_name);
+            for(let v=0; v<localStorage.length; v++){
+                if(localStorage.key(v) == searching_name){
+                    console.log('if k ander' + localStorage.key(v));
+                    found = 1; 
+                }else{
+                    continue;
+                }
+            }
+
+            if(found == 1){
+                alert('you liked it already');
+            }else{
+                localStorage.setItem(searching_name,searching_name);
+                document.getElementById(like_id).style.color = 'black';
+                localStorage[`like ${k}`,  localStorage[`like ${k}`] = Number(localStorage[`like ${k}`]) + 1];
+                document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
+            }
         }
     }
 }
@@ -202,9 +221,23 @@ function like(like_id){
 function dislike(dislike_id){
     for(let z =1; z<= localStorage.clickcount; z++){
         if(dislike_id == `d${z}` ){
-            document.getElementById(dislike_id).style.color = 'black';
-            localStorage[`dislike ${z}`,  localStorage[`dislike ${z}`] = Number(localStorage[`dislike ${z}`]) + 1];
-            document.getElementById(dislike_id).innerHTML = localStorage[`dislike ${z}`];
+            let found;
+            let searching_name = `${localStorage['last_login_member']} like ${dislike_id}`;
+            for(let v=0; v<localStorage.length; v++){
+                if(localStorage.key(v) == searching_name){
+                    found = 1; 
+                }else{
+                    continue;
+                }
+            }
+            if(found == 1){
+                alert('you disliked it already');
+            }else{
+                localStorage.setItem(searching_name,searching_name);
+                document.getElementById(dislike_id).style.color = 'black';
+                localStorage[`dislike ${z}`,  localStorage[`dislike ${z}`] = Number(localStorage[`dislike ${z}`]) + 1];
+                document.getElementById(dislike_id).innerHTML = localStorage[`dislike ${z}`];
+            }
         }
     }
 }
