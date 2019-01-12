@@ -98,6 +98,17 @@ if(typeof(Storage) !== "undefined") {
 }
 
 
+function signup_member_count(){
+    if(typeof(Storage) !== "undefined") {
+        if (localStorage.signupcount) {
+            localStorage.signupcount = Number(localStorage.signupcount)+1;
+        }else{
+            localStorage.signupcount = 1;
+        }
+    }
+}
+    
+
 
 function last_login_member(member){
     localStorage.setItem('last_login_member', member);
@@ -194,55 +205,79 @@ function dislike(dislike_id){
 }
 
 
-function exists(){
-    let signup_username = ['r',"Rhythm", "Manthan", "Nilay", "Aalind", "Akshu", "Rudra"];
-    let signup_password = ['r','123','123','123','123','123','123'];
-    let log_usr = document.getElementById("log-usr").value;
-    let log_psw = document.getElementById("log-psw").value;
-    
-
-        if(signup_username.indexOf(log_usr) > -1 && signup_password.indexOf(log_psw) > -1 ){ //that was blunder!  ---> arrayname.indexOf('string to be searched in array') ---> it checks if string exists or not if yes then retuen 0 else -1  
-            alert('found');
-            member = log_usr;
-            return(true);
-        }else{
-            alert('not found');
-            return(false);
-        }
+function writeAcomment(){
+    if(localStorage['loggedin'] == 1){
+        document.getElementById('fetch-username-after-login').innerHTML = localStorage['last_login_member'];
+        document.getElementById('message-box-popup').style.display='block';
+    }else{
+        alert('you are not logged in login first');
+        document.getElementById('modal-wrapper').style.display='block'; 
+    }
 }
 
+function signout(){
+    localStorage.setItem('loggedin', 0);
+    localStorage.setItem('last_login_member', 'Guest');
+    document.getElementById('fetch-username-after-login').innerHTML = localStorage['last_login_member'];
+    location.reload();
+}
+
+
+
+function isuserloggedin(){
+    if(localStorage['loggedin'] == 1){
+        alert('you are loggedin');
+        document.getElementById('fetch-username-after-login').innerHTML = localStorage['last_login_member'];
+        document.getElementById('message-box-popup').style.display='block';
+    }
+}
+
+
 function login(){
-        //if login's username and password matches then login
-        if(exists() === true ){
-            //change div with login member information
+let usr_found = 0;
+//if login's username and password matches then login
+let login_usr = document.getElementById('log-usr').value;
+let login_psw = document.getElementById('log-psw').value;
+    for(let p = 1; p<=localStorage.length; p++){
+        // if(signup_username.indexOf(log_usr) > -1 && signup_password.indexOf(log_psw) > -1 ){ //that was blunder!  ---> arrayname.indexOf('string to be searched in array') ---> it checks if string exists or not if yes then retuen 0 else -1 
+        console.log(localStorage[`signup usr ${p-1}`]); 
+        if(login_usr == localStorage[`signup usr ${p-1}`] && login_psw == localStorage[`signup psw ${p-1}`]){
+            localStorage['last_login_member'] = localStorage[`signup usr ${p-1}`];
             document.getElementById('modal-wrapper').style.display='none';
-            document.getElementById('fetch-username-after-login').innerHTML = member;
-            document.getElementById("message-box-comments").innerHTML = "";
+            document.getElementById('fetch-username-after-login').innerHTML = localStorage['last_login_member'];
             // enter message in message box //
-            document.getElementById('message-box-popup').style.display='block'
+            usr_found = 1;
+            localStorage.setItem('loggedin', 1);
+            isuserloggedin();
         }else{
-            document.getElementById('modal-wrapper').style.display='none';
-            document.getElementById('modal-wrapper-2').style.display='block';
-            //member not found, redirect to signup
-            // redirect to ----> signup page
+            continue;
         }
     }
+    if(usr_found != 1){
+        alert('user not found please signup first');
+        document.getElementById('modal-wrapper').style.display='none';
+        document.getElementById('modal-wrapper-2').style.display='block'; 
+    }
+}
 
 function signup(){ 
+    signup_member_count();
 
-    sessionStorage.setItem("name", JSON.stringify(signup_username));
-    var retrievedname = sessionStorage.getItem("name");
-    var retrievedname = JSON.parse(retrievedname);
+    let signup_username = document.getElementById('sign-usr').value;
+    let signup_pass = document.getElementById('sign-psw').value;
+
+    localStorage.setItem(`signup usr ${localStorage.signupcount}`, signup_username);
+    localStorage.setItem(`signup psw ${localStorage.signupcount}`, signup_pass);
+    document.getElementById('modal-wrapper-2').style.display='none';
     
-    sessionStorage.setItem("psw", JSON.stringify(signup_password));
-    var retrievedpsw = sessionStorage.getItem("psw");
-    var retrievedpsw = JSON.parse(retrievedpsw);
+    localStorage.setItem('loggedin', 1);
 
-    alert(retrievedname.length);
+    localStorage.setItem('last_login_member', signup_username);
+
+    isuserloggedin();
 }
 
 function Add_comment(){
-
 
     /////********************************** Storing add btn clicks ****************************////////
     store_btn_click();
@@ -263,7 +298,7 @@ function Add_comment(){
 
     /////********************************** changing comment-username-after-login  ****************************////////
     let comment_name_class = document.getElementsByClassName("comment-name-class")[localStorage.clickcount]
-    comment_name_class.innerHTML = member;
+    comment_name_class.innerHTML = localStorage['last_login_member'];
 
 
     /////********************************** changing comment-message-after-login  ****************************////////
@@ -276,7 +311,7 @@ function Add_comment(){
 
 
     /////********************************** saving member name in localStorage  ****************************////////
-    last_login_member(member);
+    // last_login_member(member);
 
 
     /////********************************** saving the shit differently  ****************************////////
@@ -295,4 +330,3 @@ function Add_comment(){
     location.reload();
 
 }
-

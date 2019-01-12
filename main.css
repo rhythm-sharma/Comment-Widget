@@ -8,14 +8,26 @@
     flex-direction: row;
 }
 
-.login-div{
+.corner-menu{
     position: absolute;
     top: 0px;
     right: 0px;
-    margin-right:5px; 
     display: flex;
+    flex-direction: column;
+}
+
+.login-div{
+    display: flex;
+    margin-right:5px; 
     flex-direction: row;
 }
+
+.signup-login-div{
+    margin:5px; 
+    display: flex;
+    flex-direction: column;
+}
+
 
 .top-heading{
     display: flex;
