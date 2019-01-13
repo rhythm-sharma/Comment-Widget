@@ -103,6 +103,7 @@ function like(like_id){
                 alert('you liked it already');
             }else{
                 localStorage.setItem(searching_name,searching_name);
+                document.getElementById(k).style.color = 'black';
                 if(localStorage[`dislike ${k}`] != 0 ){
                     for(let y = 0; y<localStorage.length; y++){
                         if(localStorage.key(y) == `dislike${k} ${localStorage['last_login_member']}`){
@@ -149,7 +150,8 @@ function dislike(dislike_id){
             if(found == 1){
                 alert('you disliked it already');
             }else{
-                localStorage.setItem(searching_name,searching_name);
+                localStorage.setItem(searching_name,searching_name); 
+                document.getElementById(`d${z}`).style.color = 'black';
                 if(localStorage[`like ${z}`] != 0 ){
                     for(let y = 0; y<localStorage.length; y++){
                         if(localStorage.key(y) == `like${z} ${localStorage['last_login_member']}`){
