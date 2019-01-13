@@ -1,86 +1,3 @@
-// var log_usr = document.getElementById("log-usr").value;
-// var log_psw = document.getElementById("log-psw").value;
-
-// var sign_usr = document.getElementById("sign-usr").value;
-// var sign_psw = document.getElementById("sign-psw").value;
-
-
-// class comments{
-
-//     constructor(){
-//         if(login() === true){
-//             //allow for comment
-//             comment();
-//         }else{
-//             //first log in or check it is a member or not 
-//             if(exists() === true){
-//                 //log in
-//                 login();
-//             }else{
-//                 //sign up
-//                 signup();
-//             }
-//         }
-//     }
-
-//     login(){
-//         //if login's username and password matches then login
-//         if(exists() === true ){
-//             alert('login')
-//             // a div will appear on the top-right corner with matching name from database 
-//         }else{
-//             alert('not found');
-//             document.getElementById('modal-wrapper').style.display='none';
-//             document.getElementById('modal-wrapper-2').style.display='block';
-//             //member not found, redirect to signup
-//             // redirect to ----> signup page
-//         }
-//     }
-
-//     signup(){
-//         //user firstly sign up means tha data is stored in array
-//         //close signup page
-//         //then is must be logged in 
-//         // and allow for commenting
-//         // save value to database 
-//         // save two values 1.username and  2.password
-//     }
-
-//     exists(){
-//         //check member is exists or not
-//         for(i=0;i<10;i++){
-//             if(log_usr === login_username[i] && log_psw === login_password[i]){
-//                 return(true);
-//             }else{
-//                 return(false);
-//             }
-//         }
-//     }
-
-//     comment(){
-//         //fetch name from database which is currently logged in
-//         //save current time after add reply btn press 
-//         //save message
-//     }
-
-
-//     /*********************** reply  **********************/
-//     reply(){
-//         //redirect to ----> login page
-//         if(member.exists() === true){
-//             login();
-//         }else{
-//             //redirect to ----> signup page
-//             signup();
-//         }
-//         //create a new div same as comment box
-//         comment();
-//     }
-// }
-
-
-
-
 let member;
 let comment_message;
 let comment_boxes = document.getElementById("comment-boxes");
@@ -117,6 +34,8 @@ function last_login_member(member){
 
 function show_div(){
 
+    
+
 //*********************************   showing save comments *****************************//    
     if(localStorage != null){
         for(var i=1, len=localStorage.length; i<=len; i++) {
@@ -148,6 +67,21 @@ function show_div(){
                 document.getElementById(`d${m}`).style.color = 'black';
             }
         }
+
+   if(localStorage != null){
+        for(let z = 1; z<=localStorage.clickcount;z++ ){
+            let y = Number(localStorage[`year ${z}`]);
+            let m = Number(localStorage[`month ${z}`]);
+            let d = Number(localStorage[`day ${z}`]);
+            let h = Number(localStorage[`hour ${z}`]);
+            let min = Number(localStorage[`min ${z}`]);
+            let s = Number(localStorage[`sec ${z}`]);
+            let mil = Number(localStorage[`mili ${z}`]);
+            let current= new Date();
+            document.getElementsByClassName('time_ago')[z].innerHTML = timeDifference(current,new Date(y,m,d,h,min,s,mil));        
+        }    
+   }
+
 
    
 }
@@ -314,6 +248,16 @@ function Add_comment(){
     // last_login_member(member);
 
 
+    /////********************************** create storage for time  ****************************////////
+    var today = new Date();
+    localStorage.setItem(`year ${localStorage.clickcount}`,Number(today.getFullYear()));
+    localStorage.setItem(`month ${localStorage.clickcount}`,Number(today.getMonth()));
+    localStorage.setItem(`day ${localStorage.clickcount}`,Number(today.getDate()));
+    localStorage.setItem(`hour ${localStorage.clickcount}`,Number(today.getHours()));
+    localStorage.setItem(`min ${localStorage.clickcount}`,Number(today.getMinutes()));
+    localStorage.setItem(`sec ${localStorage.clickcount}`,Number(today.getSeconds()));
+    localStorage.setItem(`mili ${localStorage.clickcount}`,Number(today.getMilliseconds()));
+
     /////********************************** saving the shit differently  ****************************////////
     d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
     
@@ -329,4 +273,41 @@ function Add_comment(){
     /////********************************** reload page  ****************************////////    
     location.reload();
 
+}
+
+/////********************************** timestamps like ---->  2 min ago, 1 month ago   ****************************////////    
+
+function timeDifference(current, previous) {
+    
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 30;
+    var msPerYear = msPerDay * 365;
+    
+    var elapsed = current - previous;
+    
+    if (elapsed < msPerMinute) {
+         return Math.round(elapsed/1000) + ' seconds ago';   
+    }
+    
+    else if (elapsed < msPerHour) {
+         return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+    }
+    
+    else if (elapsed < msPerDay ) {
+         return Math.round(elapsed/msPerHour ) + ' hours ago';   
+    }
+
+    else if (elapsed < msPerMonth) {
+         return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';   
+    }
+    
+    else if (elapsed < msPerYear) {
+         return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';   
+    }
+    
+    else {
+         return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';   
+    }
 }
