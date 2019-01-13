@@ -77,6 +77,10 @@ h3{
     margin: 5px;
 }
 
+.posted_ago{
+    color: rgba(0,0,0,.4);
+}
+
 .row2{
     margin: 0 0 0 1em;
     height: auto;
