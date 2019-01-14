@@ -39,6 +39,11 @@ h3{
     margin: 5px;
 }
 
+h2{
+    font-family: 'Roboto Mono', monospace;
+}
+
+
 .comment-box-class{
     margin: 20px;
     display: flex;
@@ -343,9 +348,30 @@ input[type=text], input[type=password] {
 
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
 
-    .modal-content{
-        width: 90%;
-    }
+.modal-content{
+    width: 80%;
+    max-width: 450px;
+    height: 60vh;
+}
+
+.avatar{
+    height: 120px;
+    width: 120px;
+}
+
+input{
+    height: 1.5em;
+}
+
+.button_other{
+    font-size: 15px;
+    height: 2em;
+    padding: 0px 20px;
+}
+
+.container{
+    margin-left: -15px;
+}
 }
