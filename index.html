@@ -88,7 +88,7 @@
                 <input id="log-usr" autocomplete="off" type="text" placeholder="Enter Username" name="uname" required>
                 <input id="log-psw" autocomplete="off" type="password" placeholder="Enter Password" name="psw" required>        
                 <button class="button_other" type="submit" onclick="login();">Login</button>
-                <button onclick="document.getElementById('modal-wrapper-2').style.display='block';document.getElementById('modal-wrapper').style.display='none'" class="button button_other">Sign Up</button>         
+                <button style="margin:2em;" onclick="document.getElementById('modal-wrapper-2').style.display='block';document.getElementById('modal-wrapper').style.display='none'" class="btn">New Signup here</button>         
             </div>
         </form>
     </div>
@@ -110,7 +110,7 @@
                 <input id="sign-usr" autocomplete="off" type="text" placeholder="Enter Username" name="uname" required>
                 <input id="sign-psw" autocomplete="off" type="password" placeholder="Enter Password" name="psw" required>        
                 <button class="button_other" onclick="signup();" type="submit">Sign Up</button>
-                <button class="button_other" type="submit" onclick="login();">Login</button>
+                <button style="margin:2em;" class="btn" type="submit" onclick="document.getElementById('modal-wrapper-2').style.display='none';document.getElementById('modal-wrapper').style.display='block'">Already a member Login</button>
             </div>
         </form>
     </div>
