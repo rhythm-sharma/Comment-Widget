@@ -48,8 +48,19 @@ function show_div(){
                 }
             }
         }
-
-
+    }
+        if(localStorage != null){
+            for(var i=1, len=localStorage.length; i<=len; i++) {
+                for(var j=1, len=localStorage.length; j<=len; j++) {
+                    var key = localStorage.key(j-1);
+                    var value = localStorage[key];
+                    if(key.substring(0,2) == `${i}r`){
+                        var r1 = document.getElementsByClassName('comment-box-class')[`${i}`];
+                        r1.insertAdjacentHTML('beforeend', value);    
+                    }
+                }
+            }
+    
        
 //*********************************   showing login member name on top-right corner *****************************//    
     if(localStorage['last_login_member'] != null)
@@ -258,7 +269,7 @@ function signup(){
     isuserloggedin();
 }
 
-function Add_comment(){
+function Add_comment(comment_number){
 
     /////********************************** Storing add btn clicks ****************************////////
     store_btn_click();
@@ -286,7 +297,12 @@ function Add_comment(){
     let comment_message_class = document.getElementsByClassName("row2")[localStorage.clickcount]
     comment_message_class.innerHTML = comment_message;
 
-    /////********************************** create variables for like and dislike  ****************************////////
+
+    /////********************************** changing reply ---> id  ****************************////////
+    let comment_reply_id = document.getElementsByClassName("r")[localStorage.clickcount]
+    comment_reply_id.id = localStorage.clickcount + 'r';
+
+    /////********************************** create variables for like an    1d dislike  ****************************////////
     document.getElementsByClassName('fetch-like-count')[localStorage.clickcount].id = localStorage.clickcount;
     document.getElementsByClassName('fetch-dislike-count')[localStorage.clickcount].id = 'd' + localStorage.clickcount;
 
@@ -308,8 +324,13 @@ function Add_comment(){
     /////********************************** saving the shit differently  ****************************////////
     d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
     
-    localStorage.setItem(`div ${localStorage.clickcount}`, `${d.outerHTML}`);
-
+    if(localStorage[`Reply_clicked`] == 1){
+        
+        localStorage.setItem(`${localStorage[`which_reply_clicked`].substring(0,1)}r div ${localStorage.clickcount}`,`${d.outerHTML}`);
+        localStorage.setItem(`Reply_clicked`,0);
+    }else{
+        localStorage.setItem(`div ${localStorage.clickcount}`,`${d.outerHTML}`);
+    }
 
 
     /////********************************** like and dislike ****************************////////
@@ -319,7 +340,11 @@ function Add_comment(){
 
     /////********************************** reload page  ****************************////////    
     location.reload();
+}
 
+function reply_clicked(comment_box_id){
+    localStorage.setItem(`Reply_clicked`,1);
+    localStorage.setItem(`which_reply_clicked`,comment_box_id);
 }
 
 /////********************************** timestamps like ---->  2 min ago, 1 month ago   ****************************////////    
