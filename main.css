@@ -47,6 +47,7 @@ h3{
 }
 
 .img{
+    background-color:rgb(201, 215, 245);
     margin-top: 10px;
     min-height:30px;
     max-height:30px;
