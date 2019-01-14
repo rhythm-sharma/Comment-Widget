@@ -354,6 +354,7 @@ input[type=text], input[type=password] {
     width: 80%;
     max-width: 450px;
     height: 60vh;
+    min-height: 400px;
 }
 
 .avatar{
