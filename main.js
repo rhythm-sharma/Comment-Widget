@@ -56,7 +56,7 @@ function show_div(){
                     var value = localStorage[key];
                     if(key.substring(0,2) == `${i}r`){
                         var r1 = document.getElementsByClassName('comment-box-class')[`${i}`];
-                        r1.insertAdjacentHTML('beforeend', value);    
+                        r1.insertAdjacentHTML('afterend', value);    
                     }
                 }
             }
@@ -325,7 +325,7 @@ function Add_comment(comment_number){
     d = document.getElementsByClassName("comment-box-class")[localStorage.clickcount];
     
     if(localStorage[`Reply_clicked`] == 1){
-        
+        d.style="margin-left: 6em;position: relative;";
         localStorage.setItem(`${localStorage[`which_reply_clicked`].substring(0,1)}r div ${localStorage.clickcount}`,`${d.outerHTML}`);
         localStorage.setItem(`Reply_clicked`,0);
     }else{
