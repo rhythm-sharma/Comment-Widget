@@ -116,100 +116,109 @@ if(document.getElementById('fetch-username-after-login').innerHTML == 'Guest'){
 }
 
 function like(like_id){
-    for(let k =1; k<= localStorage.clickcount; k++){
-        if(like_id == k ){
-            let found;
-            let searching_name = `like${like_id} ${localStorage['last_login_member']}`;
-            for(let v=0; v<localStorage.length; v++){
-                if(localStorage.key(v) == searching_name){
-                    found = 1; 
-                }else{
-                    continue;
+    if(localStorage['last_login_member'] != 'Guest'){
+        for(let k =1; k<= localStorage.clickcount; k++){
+            if(like_id == k ){
+                let found;
+                let searching_name = `like${like_id} ${localStorage['last_login_member']}`;
+                for(let v=0; v<localStorage.length; v++){
+                    if(localStorage.key(v) == searching_name){
+                        found = 1; 
+                    }else{
+                        continue;
+                    }
                 }
-            }
-            if(found == 1){
-                alert('you liked it already');
-            }else{
-                localStorage.setItem(searching_name,searching_name);
-                document.getElementById(k).style.color = 'black';
-                if(localStorage[`dislike ${k}`] != 0 ){
-                    for(let y = 0; y<localStorage.length; y++){
-                        if(localStorage.key(y) == `dislike${k} ${localStorage['last_login_member']}`){
-                            localStorage.removeItem(`dislike${k} ${localStorage['last_login_member']}`);
+                if(found == 1){
+                    alert('you liked it already');
+                }else{
+                    localStorage.setItem(searching_name,searching_name);
+                    document.getElementById(k).style.color = 'black';
+                    if(localStorage[`dislike ${k}`] != 0 ){
+                        for(let y = 0; y<localStorage.length; y++){
+                            if(localStorage.key(y) == `dislike${k} ${localStorage['last_login_member']}`){
+                                localStorage.removeItem(`dislike${k} ${localStorage['last_login_member']}`);
+                            }
                         }
                     }
-                }
-               
-                let like_count = 0;
-                for(let f = 0; f<localStorage.length; f++){
-                    if(localStorage.key(f).substring(0,5) == `like${k}`){
-                        like_count += 1;
+                   
+                    let like_count = 0;
+                    for(let f = 0; f<localStorage.length; f++){
+                        if(localStorage.key(f).substring(0,5) == `like${k}`){
+                            like_count += 1;
+                        }
                     }
-                }
-                localStorage[`like ${k}`] = like_count;
-                document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
-               
-                let dislike_count = 0;
-                for(let f = 0; f<localStorage.length; f++){
-                    if(localStorage.key(f).substring(0,8) == `dislike${k}`){
-                        dislike_count += 1;
+                    localStorage[`like ${k}`] = like_count;
+                    document.getElementById(like_id).innerHTML = localStorage[`like ${k}`];
+                   
+                    let dislike_count = 0;
+                    for(let f = 0; f<localStorage.length; f++){
+                        if(localStorage.key(f).substring(0,8) == `dislike${k}`){
+                            dislike_count += 1;
+                        }
                     }
+                    localStorage[`dislike ${k}`] = dislike_count;
+                    document.getElementById(`d${k}`).innerHTML = localStorage[`dislike ${k}`];
                 }
-                localStorage[`dislike ${k}`] = dislike_count;
-                document.getElementById(`d${k}`).innerHTML = localStorage[`dislike ${k}`];
-            }
-        } 
+            } 
+        }
+    }else{
+        alert('please login to like');
     }
 }
 
 
 function dislike(dislike_id){
-    for(let z =1; z<= localStorage.clickcount; z++){
-        if(dislike_id == `d${z}` ){
-            let found;
-            let searching_name = `dislike${z} ${localStorage['last_login_member']}`;
-            for(let v=0; v<localStorage.length; v++){
-                if(localStorage.key(v) == searching_name){
-                    found = 1; 
-                }else{
-                    continue;
+    if(localStorage['last_login_member'] != 'Guest'){
+        for(let z =1; z<= localStorage.clickcount; z++){
+            if(dislike_id == `d${z}` ){
+                let found;
+                let searching_name = `dislike${z} ${localStorage['last_login_member']}`;
+                for(let v=0; v<localStorage.length; v++){
+                    if(localStorage.key(v) == searching_name){
+                        found = 1; 
+                    }else{
+                        continue;
+                    }
                 }
-            }
-            if(found == 1){
-                alert('you disliked it already');
-            }else{
-                localStorage.setItem(searching_name,searching_name); 
-                document.getElementById(`d${z}`).style.color = 'black';
-                if(localStorage[`like ${z}`] != 0 ){
-                    for(let y = 0; y<localStorage.length; y++){
-                        if(localStorage.key(y) == `like${z} ${localStorage['last_login_member']}`){
-                            localStorage.removeItem(`like${z} ${localStorage['last_login_member']}`);
+                if(found == 1){
+                    alert('you disliked it already');
+                }else{
+                    localStorage.setItem(searching_name,searching_name); 
+                    document.getElementById(`d${z}`).style.color = 'black';
+                    if(localStorage[`like ${z}`] != 0 ){
+                        for(let y = 0; y<localStorage.length; y++){
+                            if(localStorage.key(y) == `like${z} ${localStorage['last_login_member']}`){
+                                localStorage.removeItem(`like${z} ${localStorage['last_login_member']}`);
+                            }
                         }
                     }
-                }
-               
-                let dislike_count = 0;
-                for(let f = 0; f<localStorage.length; f++){
-                    if(localStorage.key(f).substring(0,8) == `dislike${z}`){
-                        console.log(`dislike-dislike mila`);
-                        dislike_count += 1;
+                   
+                    let dislike_count = 0;
+                    for(let f = 0; f<localStorage.length; f++){
+                        if(localStorage.key(f).substring(0,8) == `dislike${z}`){
+                            console.log(`dislike-dislike mila`);
+                            dislike_count += 1;
+                        }
                     }
-                }
-                localStorage[`dislike ${z}`] = dislike_count;
-                document.getElementById(dislike_id).innerHTML = localStorage[`dislike ${z}`];
-               
-                let like_count = 0;
-                for(let f = 0; f<localStorage.length; f++){
-                    if(localStorage.key(f).substring(0,5) == `like${z}`){
-                        like_count += 1;
+                    localStorage[`dislike ${z}`] = dislike_count;
+                    document.getElementById(dislike_id).innerHTML = localStorage[`dislike ${z}`];
+                   
+                    let like_count = 0;
+                    for(let f = 0; f<localStorage.length; f++){
+                        if(localStorage.key(f).substring(0,5) == `like${z}`){
+                            like_count += 1;
+                        }
                     }
+                    localStorage[`like ${z}`] = like_count;
+                    document.getElementById(z).innerHTML = localStorage[`like ${z}`];
                 }
-                localStorage[`like ${z}`] = like_count;
-                document.getElementById(z).innerHTML = localStorage[`like ${z}`];
+                   
             }
-               
         }
+    }else{
+        alert('please login to dislike');
     }
+    
 }
 
 
@@ -235,12 +244,19 @@ function signout(){
 
 function isuserloggedin(){
     if(localStorage['loggedin'] == 1){
-        alert('you are loggedin');
         document.getElementById('fetch-username-after-login').innerHTML = localStorage['last_login_member'];
         document.getElementById('message-box-popup').style.display='block';
         document.getElementById('a_signup').style.display='none';
         document.getElementById('a_login').style.display='none';
         document.getElementById('a_signout').style.display='block';
+    }
+}
+
+function canuserreply(){
+    if(localStorage['last_login_member'] == 'Guest'){
+        alert('please login');
+    }else{
+        document.getElementById('message-box-popup').style.display='block';
     }
 }
 
