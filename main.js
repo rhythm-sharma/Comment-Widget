@@ -32,10 +32,19 @@ function last_login_member(member){
 }
 
 
-function show_div(){
+//********************************* showing side navbar and side closing navbar *****************************//    
 
-    
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
 
+
+function show_div(){    
+ 
 //*********************************   showing save comments *****************************//    
     if(localStorage != null){
         for(var i=1, len=localStorage.length; i<=len; i++) {
@@ -94,6 +103,14 @@ function show_div(){
         }    
    }
 
+/*****************************  showing navbar ---->  signup login signout *******************/
+
+if(document.getElementById('fetch-username-after-login').innerHTML == 'Guest'){
+    document.getElementById('a_signup').style.display='block';
+    document.getElementById('a_login').style.display='block';        
+}else{
+    document.getElementById('a_signout').style.display='block';
+}
 
    
 }
@@ -221,6 +238,9 @@ function isuserloggedin(){
         alert('you are loggedin');
         document.getElementById('fetch-username-after-login').innerHTML = localStorage['last_login_member'];
         document.getElementById('message-box-popup').style.display='block';
+        document.getElementById('a_signup').style.display='none';
+        document.getElementById('a_login').style.display='none';
+        document.getElementById('a_signout').style.display='block';
     }
 }
 

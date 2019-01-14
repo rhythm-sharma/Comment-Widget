@@ -47,10 +47,11 @@ h3{
 }
 
 .img{
-    min-height:50px;
-    max-height:50px;
-    min-width:50px;
-    max-width:50px;
+    margin-top: 10px;
+    min-height:30px;
+    max-height:30px;
+    min-width:30px;
+    max-width:30px;
 }
 
 .information{
@@ -85,7 +86,6 @@ h3{
     margin: 0 0 0 1em;
     height: auto;
     max-width: 30rem;
-    width: auto;
 }
 
 .row3{
@@ -156,8 +156,14 @@ h3{
 
  @media screen and (max-width: 600px) {
 .input-field{
-    width: 90vw;
+    width: 80vw; 
 } 
+
+.row2{
+    margin: 0 0 0 1em;
+    height: auto;
+    max-width: 10rem;
+}
 }
 
 .submit-btn{
@@ -288,4 +294,46 @@ input[type=text], input[type=password] {
 @keyframes zoom {
     from {transform: scale(0)} 
     to {transform: scale(1)}
+}
+
+
+/************************ sidenav bar **************************/
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+  
+.sidenav a,.sidenav button{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+  
+.sidenav a:hover ,.sidenav button{
+    color: #f1f1f1;
+}
+  
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+  
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a,.sidenav button {font-size: 18px;}
 }

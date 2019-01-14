@@ -15,20 +15,22 @@
 <!----------------------------------------- Heading --------------------------------->
 
     <header class="header">
-    <div style="margin: 0 0 0 1em" class="top-heading"><h3>Comments</h3><img style="vertical-align:bottom;min-height:28px;max-height:28px;min-width:28px;max-width:28px;" src="src/img/chat.svg" alt="comment-img"></div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>        
+    <div class="top-heading"><h3>Comments</h3><img style="vertical-align:bottom;min-height:28px;max-height:28px;min-width:28px;max-width:28px;" src="src/img/chat.svg" alt="comment-img"></div>
     <div class="corner-menu">
-        <div style=" width:auto;background-color: rgba(192, 171, 171, 0.2);box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="login-div">
-            <img style="background-color:white;border-radius:50%;" class="img" src="https://robohash.org/345" alt="photo">
-            <p style="margin-left:15px; margin-right:5px;" id="fetch-username-after-login">guest</p>
+        <div  class="login-div">
+            <img style="background-color:rgb(201, 215, 245);border-radius:50%;" class="img" src="https://robohash.org/345" alt="photo">
+            <p style="font-size:15px;margin-right:5px;font-family: 'Roboto Mono', monospace;" id="fetch-username-after-login">Guest</p>
         </div>
-        <div style=" width:auto;background-color: rgba(192, 171, 171, 0.2);box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" class="signup-login-div">
-            <button class="btn" onclick="document.getElementById('modal-wrapper-2').style.display='block';">Signup</button>
-            <button class="btn" onclick=" document.getElementById('modal-wrapper').style.display='block';">Login</button>
-            <button class="btn" onclick="signout();">SignOut</button>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a id="a_signup" style="display:none;" onclick="closeNav();document.getElementById('modal-wrapper-2').style.display='block';">Signup</a>
+            <a id="a_login" style="display:none;" onclick="closeNav();document.getElementById('modal-wrapper').style.display='block';">Login</a>
+            <a id="a_signout" style="display:none;" onclick="closeNav();signout();">SignOut</a>
         </div>
     </div>
     </header>
-    <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin:1em 0 0 1em;padding: 0px;">
+    <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #ccc;padding: 0px;">
 
 <!----------------------------------------- Sample - comment    --------------------------------->
     <div id="comment-boxes">    
@@ -41,12 +43,9 @@
                     <div class="name"><strong class="comment-name-class" id="fetch-name">Rhythm</strong></div>
                     <div class="time_ago" id="fetch-time">5 min ago</div>
                 </div>
-                <div class="row2" class="comment-message-class" id="fetch-message">
-                    <!-- <textarea id="comments" class="input-field" style="height:100%;width :200%;" name="comment" placeholder="Enter your comment here..."></textarea> -->
-                    This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-                </div>
+                <i class="row2" class="comment-message-class" id="fetch-message">This has been very useful for my research. Thanks as well! mmkkmkopd sfkopsdkopsdkops dkcvopskvop s kvpodfckv dpflvklpvlp cvklopcvkcov kpxcovk xpcokv; xockv bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</i>
                 <div class="row3">
-                    <div class="reply"><button id="r" class="r" class="reply" style="text-decoration:none;border:none;" onclick="isuserloggedin();reply_clicked(this.id)" class="button">Reply</button></div>
+                    <div class="reply"><button id="r" class="r" class="reply" style="border:none;" onclick="isuserloggedin();reply_clicked(this.id)" class="button">Reply</button></div>
                     <div class="vote">
                         <div id="fetch-like">  
                             <i id="a" class="fa fa-thumbs-up like fetch-like-count"  onclick="like(this.id);">0</i>
