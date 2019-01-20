@@ -123,12 +123,12 @@
 
     <div id="message-box-popup" class="modal">
             <form onsubmit="return false;" class="modal-content animate">
-                <div class="imgcontainer" style="margin-top:0px;">
+                <div class="imgcontainer">
                     <span style="  position: absolute;top: 0px;right: 0px;" onclick="document.getElementById('message-box-popup').style.display='none'" class="close" title="Close PopUp">&times;</span>
+                    <h3 class="message-head">Enter your comment here</h3>
                 </div>
-                <h3>Enter your comment here</h3>
-                <div class="container" style="margin-top:20px;">
-                    <textarea autocomplete="off" style="width:90%" id="message-box-comments" class="input-field" name="comment" onclick="" placeholder="Enter your comment here..."></textarea>
+                <div class="container">
+                    <textarea autocomplete="off" id="message-box-comments" class="input-field" name="comment" placeholder="Enter your comment here..."></textarea>
                     <button onclick="Add_comment();" style="width: 8rem;margin-left:2em;margin-top:1em;" class="btn">Add a comment</button>  
                 </div>
             </form>

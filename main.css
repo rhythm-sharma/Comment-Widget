@@ -375,4 +375,9 @@ input{
 .container{
     margin-left: -15px;
 }
+
+.message-head{
+    margin: 2em;
+}
+
 }
