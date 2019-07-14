@@ -1,3 +1,3 @@
 # Comment-Widget - Vanilla JS
   
-live -> https://rrhythmsharma.github.io/Comment-Widget/
+# live -> https://rrhythmsharma.github.io/Comment-Widget/
