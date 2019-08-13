@@ -137,8 +137,6 @@ h2{
     margin-left: 0.5em;
 }
 
-
-
 .new-message{
     display: flex;
     flex-direction: column;
@@ -147,7 +145,9 @@ h2{
 
 .message-box{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
 }
 
 .input-field{
@@ -155,14 +155,14 @@ h2{
     text-decoration: none;
     border-style: solid 1px black; 
     width: 550px;
-    height: 10rem;
+    height: 30px;
     resize: vertical;
 }
 
 
  @media screen and (max-width: 600px) {
 .input-field{
-    width: 80vw; 
+    width: 70vw; 
 } 
 
 .row2{

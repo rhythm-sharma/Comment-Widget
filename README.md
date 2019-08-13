@@ -8,6 +8,7 @@
 ## Working
 
 #### User must satisfy following condition to do comments
+You can find signIn button by clicking hamberger-icon which opens side-navbar 
 * User must be logged in 
 * If user is new then user must signup(algorithm automatically signin if user signup)
 * tada! now user is good to go

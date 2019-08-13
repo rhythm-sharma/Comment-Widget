@@ -35,12 +35,26 @@
     </header>
     <hr style="display: block;width:100%;height: 1px;border: 0;border-top: 1px solid #ccc;padding: 0px;">
 
+
+
+<!----------------------------------------- Comment-box for guest --------------------------------->
+
+    <div id="new-message" class="new-message">
+        <div class="message-box">
+            <textarea id="comments" class="input-field" name="comment" onclick="writeAcomment();" placeholder="Enter your comment here..."></textarea>
+        </div>
+        <div class="submit-button">
+            <button onclick="writeAcomment();" style="width: 8rem;margin-top:1em;margin-left:2em;" class="btn" class="button_other">Add a Comment</button>
+        </div>
+    </div>
+
+
 <!----------------------------------------- Sample - comment    --------------------------------->
     <div id="comment-boxes">    
             <div id="comment-box-id" class="comment-box-class">
                 <div class="photo">
-                <img class="img" src="https://robohash.org/ssdf" alt="photo">
-            </div>
+                    <img class="img" src="https://robohash.org/ssdf" alt="photo">
+                </div>
             <div class="information">
                 <div class="row1">
                     <div class="name"><strong class="comment-name-class" id="fetch-name">Rhythm</strong></div>
@@ -61,18 +75,6 @@
                 </div>
             </div>
             </div>
-    </div>
-
-<!----------------------------------------- Comment-box for guest --------------------------------->
-
-
-    <div id="new-message" class="new-message">
-        <div class="message-box">
-            <textarea id="comments" class="input-field" name="comment" onclick="writeAcomment();" placeholder="Enter your comment here..."></textarea>
-        </div>
-        <div class="submit-button">
-            <button onclick="writeAcomment();" style="width: 8rem;margin-top:1em;margin-left:2em;" class="btn" class="button_other">Add a Comment</button>
-        </div>
     </div>
 
 <!-----------------------------------------  Login-form  --------------------------------->
