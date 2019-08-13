@@ -124,13 +124,13 @@
     <!-------------------------------  message box popup open after login ----------------------------->
 
     <div id="message-box-popup" class="modal">
-            <form onsubmit="return false;" class="modal-content animate">
+            <form onsubmit="return false;" class="modal-content animate"  style="height: 60%;">
                 <div class="imgcontainer">
                     <span style="  position: absolute;top: 0px;right: 0px;" onclick="document.getElementById('message-box-popup').style.display='none'" class="close" title="Close PopUp">&times;</span>
                     <h3 class="message-head">Enter your comment here</h3>
                 </div>
-                <div class="container">
-                    <textarea autocomplete="off" id="message-box-comments" class="input-field" name="comment" placeholder="Enter your comment here..."></textarea>
+                <div class="container" style="height: auto;margin-right: auto;margin-left: auto;">
+                    <textarea autocomplete="off" id="message-box-comments" class="input-field" name="comment" placeholder="Enter your comment here..." style="width: 85%;height: 30vh;"></textarea>
                     <button onclick="Add_comment();" style="width: 8rem;margin-left:2em;margin-top:1em;" class="btn">Add a comment</button>  
                 </div>
             </form>
